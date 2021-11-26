@@ -30,6 +30,7 @@ namespace Auroria
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
+            WorldAssembler.LoadContent(Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -37,6 +38,9 @@ namespace Auroria
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+
+            UI.Update(gameTime);
+            Input.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -46,6 +50,12 @@ namespace Auroria
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            _spriteBatch.Begin();
+
+            UI.Draw(_spriteBatch);
+
+            _spriteBatch.End();
 
             // TODO: Add your drawing code here
 
