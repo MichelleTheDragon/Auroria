@@ -11,6 +11,7 @@ namespace Auroria
         private SpriteBatch _spriteBatch;
 
         private List<GameObject> myGameObjects = new List<GameObject>();
+        private PlayerObject player;
 
         private WorldAssembler myWorld;
         private UI myUI;
@@ -40,15 +41,20 @@ namespace Auroria
 
             myWorld.LoadContent(Content);
             // TODO: use this.Content to load your game content here
+
+            player = new PlayerObject(Content.Load<Texture2D>("Player"), new Vector2(_graphics.GraphicsDevice.Viewport.Width/2, _graphics.GraphicsDevice.Viewport.Height / 2));
         }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            {
+                //myUI.MenuToggle();
+                Exit(); //to be replaced with line above
+            }
 
             myUI.Update(gameTime);
-            myInput.Update(gameTime);
+            myInput.Update(gameTime, player);
 
             // TODO: Add your update logic here
 
@@ -61,6 +67,12 @@ namespace Auroria
 
             _spriteBatch.Begin();
 
+
+            foreach(GameObject myObject in myGameObjects)
+            {
+                myObject.Draw(_spriteBatch);
+            }
+            player.Draw(_spriteBatch);
             myUI.Draw(_spriteBatch);
 
             _spriteBatch.End();
