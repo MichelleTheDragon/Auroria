@@ -10,6 +10,10 @@ namespace Auroria
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
+        private Color backgroundColour = Color.CornflowerBlue;
+
+        private List<Component> gameComponents;
+
         private List<GameObject> myGameObjects = new List<GameObject>();
         private PlayerObject player;
 
@@ -26,6 +30,7 @@ namespace Auroria
 
         protected override void Initialize()
         {
+            IsMouseVisible = true;
             // TODO: Add your initialization logic here
 
             base.Initialize();
@@ -33,7 +38,21 @@ namespace Auroria
 
         protected override void LoadContent()
         {
+                        
             _spriteBatch = new SpriteBatch(GraphicsDevice);
+
+            var exitButton = new Button(Content.Load<Texture2D>("Controls/ButtonNew"), Content.Load<SpriteFont>("Fonts/Font"))
+            {
+                Position = new Vector2(200, 200),
+                Text = "Exit"
+            };
+
+            exitButton.Click += ExitButton_Click;
+
+            gameComponents = new List<Component>()
+            {
+
+            };
 
             myWorld = new WorldAssembler();
             myInput = new Input();
@@ -45,8 +64,17 @@ namespace Auroria
             player = new PlayerObject(Content.Load<Texture2D>("Player"), new Vector2(_graphics.GraphicsDevice.Viewport.Width/2, _graphics.GraphicsDevice.Viewport.Height / 2));
         }
 
+        private void ExitButton_Click(object sender, System.EventArgs e)
+        {
+            Exit();
+        }
+
         protected override void Update(GameTime gameTime)
         {
+
+            foreach (var component in gameComponents)
+                component.Update(gameTime);
+
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 //myUI.MenuToggle();
@@ -75,7 +103,10 @@ namespace Auroria
             player.Draw(_spriteBatch);
             myUI.Draw(_spriteBatch);
 
-            _spriteBatch.End();
+            foreach (var component in gameComponents)
+                component.Draw(gameTime, _spriteBatch);
+
+                _spriteBatch.End();
 
             // TODO: Add your drawing code here
 
