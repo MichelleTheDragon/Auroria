@@ -13,6 +13,7 @@
 
 #---------------------------------- Content ---------------------------------#
 
+#begin curPos.png
 #begin Controls/Button Beta.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -23,6 +24,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
+/build:curPos.png;Player.png
 /build:Controls/Button Beta.png;Controls/Button.png
 
 #begin Fonts/Font.spritefont
@@ -31,4 +33,3 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Font.spritefont
-
