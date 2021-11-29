@@ -11,13 +11,12 @@ namespace Auroria
 
         public void Update(GameTime gameTime, PlayerObject player)
         {
-
-            Movement(gameTime, player);
+            KeyboardState keyState = Keyboard.GetState(); //get state of keyboard
+            Movement(gameTime, player, keyState);
         }
 
-        private void Movement(GameTime gameTime, PlayerObject player)
+        private void Movement(GameTime gameTime, PlayerObject player, KeyboardState keyState)
         {
-            KeyboardState keyState = Keyboard.GetState(); //get state of keyboard
 
             //move selection on grid, W = up, S = down, A = left, D = right
             if (!((keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.Up)) && (keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.Down))))
