@@ -8,12 +8,10 @@ namespace Auroria
 {
     public abstract class Component
     {
-<<<<<<< Updated upstream
-        
-=======
+
         public abstract void Draw(GameTime gameTime, SpriteBatch spriteBatch);
 
         public abstract void Update(GameTime gametime);
->>>>>>> Stashed changes
+
     }
 }
