@@ -24,20 +24,23 @@ namespace Auroria
             {
                 if (keyState.IsKeyDown(Keys.W))
                 {
-
+                    player.Move(1, gameTime);
                 }
-                if (keyState.IsKeyDown(Keys.S))
+                else if (keyState.IsKeyDown(Keys.S))
                 {
-
+                    player.Move(2, gameTime);
                 }
             }
-            else if (keyState.IsKeyDown(Keys.A))
+            if (!(keyState.IsKeyDown(Keys.A) && keyState.IsKeyDown(Keys.D)))
             {
-
-            }
-            else if (keyState.IsKeyDown(Keys.D))
-            {
-
+                if (keyState.IsKeyDown(Keys.A))
+                {
+                    player.Move(3, gameTime);
+                }
+                else if (keyState.IsKeyDown(Keys.D))
+                {
+                    player.Move(4, gameTime);
+                }
             }
         }
     }
