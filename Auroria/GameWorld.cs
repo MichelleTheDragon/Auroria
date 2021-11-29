@@ -32,6 +32,10 @@ namespace Auroria
         {
             IsMouseVisible = true;
             // TODO: Add your initialization logic here
+            _graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width - 300; //sets the width of the window
+            _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 200; //sets the height of the window
+            //_graphics.IsFullScreen = true; //set the window to fullscreen
+            _graphics.ApplyChanges(); //applies the changes
 
             base.Initialize();
         }
