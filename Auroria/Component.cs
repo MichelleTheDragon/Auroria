@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Auroria
 {
-    class Component
+    public abstract class Component
     {
+        
     }
 }
