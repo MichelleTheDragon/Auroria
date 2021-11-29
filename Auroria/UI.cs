@@ -14,6 +14,10 @@ namespace Auroria
 
         #endregion
 
+        #region Properties
+
+        #endregion
+
         #region Constructors
 
         #endregion

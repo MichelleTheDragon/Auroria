@@ -13,7 +13,6 @@
 
 #---------------------------------- Content ---------------------------------#
 
-#begin curPos.png
 #begin Controls/Button Beta.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -24,8 +23,31 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:curPos.png;Player.png
 /build:Controls/Button Beta.png;Controls/Button.png
+
+#begin Controls/ButtonNew.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Controls/ButtonNew.png
+
+#begin curPos.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:curPos.png;Player.png
 
 #begin Fonts/Font.spritefont
 /importer:FontDescriptionImporter
@@ -33,3 +55,4 @@
 /processorParam:PremultiplyAlpha=True
 /processorParam:TextureFormat=Compressed
 /build:Fonts/Font.spritefont
+
