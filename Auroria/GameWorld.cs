@@ -45,17 +45,17 @@ namespace Auroria
                         
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var exitButton = new Button(Content.Load<Texture2D>("Controls/ButtonNew"), Content.Load<SpriteFont>("Fonts/Font"))
+            var exitButton = new Button(Content.Load<Texture2D>("Controls/Button"), Content.Load<SpriteFont>("Fonts/Font"))
             {
-                Position = new Vector2(200, 200),
-                Text = "Exit"
+                Position = new Vector2(100, 100),
+                Text = "Exit",
             };
 
             exitButton.Click += ExitButton_Click;
 
             gameComponents = new List<Component>()
             {
-
+                exitButton
             };
 
             myWorld = new WorldAssembler();
