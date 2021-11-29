@@ -18,12 +18,19 @@ namespace Auroria
         protected Vector2 origin;
         protected SpriteEffects effects;
 
-        public GameObject(Texture2D sprite, Vector2 worldPos)
+        protected bool isSolid;
+        public bool IsSolid {get { return isSolid; } }
+
+
+
+        public GameObject(Texture2D sprite, Vector2 worldPos, bool isSolid)
         {
             this.sprite = sprite;
             this.worldPos = worldPos;
             rect = new Rectangle(0, 0, sprite.Width, sprite.Height);
             origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
+
+            this.isSolid = isSolid;
         }
 
         public void LoadContent(ContentManager content)

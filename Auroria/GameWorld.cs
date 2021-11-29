@@ -62,7 +62,7 @@ namespace Auroria
             myInput = new Input();
             myUI = new UI();
 
-            myWorld.LoadContent(Content);
+            myWorld.LoadContent(Content, this);
             // TODO: use this.Content to load your game content here
 
             player = new PlayerObject(Content.Load<Texture2D>("Player"), new Vector2(_graphics.GraphicsDevice.Viewport.Width/2, _graphics.GraphicsDevice.Viewport.Height / 2));
@@ -115,6 +115,11 @@ namespace Auroria
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        public void AddObject(GameObject newObject)
+        {
+            myGameObjects.Add(newObject);
         }
     }
 }

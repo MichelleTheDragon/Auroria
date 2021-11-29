@@ -13,7 +13,7 @@ namespace Auroria
         private Vector2 movement = Vector2.Zero;
         public Vector2 Movement { get { return movement; } set { movement = value; } }
 
-        public PlayerObject(Texture2D sprite, Vector2 worldPos) : base(sprite, worldPos)
+        public PlayerObject(Texture2D sprite, Vector2 worldPos) : base(sprite, worldPos, false)
         {
 
         }

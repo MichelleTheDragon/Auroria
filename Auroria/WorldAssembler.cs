@@ -15,7 +15,7 @@ namespace Auroria
         private Texture2D plant;
         private Texture2D flora;
 
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, GameWorld gameWorld)
         {
             rock = content.Load<Texture2D>("Player");
             tree = content.Load<Texture2D>("Player");
@@ -41,7 +41,7 @@ namespace Auroria
                 {
                     if (colors[y * mapWidth + x] == black) //if the checked pixel is black
                     {
-                        new Rock(rock, new Vector2(x * 10, y * 10));
+                        gameWorld.AddObject(new Rock(rock, new Vector2(x * 50, y * 50)));
                     }
                 }
             }
