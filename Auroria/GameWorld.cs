@@ -12,6 +12,10 @@ namespace Auroria
 
         private List<GameObject> myGameObjects = new List<GameObject>();
 
+        private WorldAssembler myWorld;
+        private UI myUI;
+        private Input myInput;
+
         public GameWorld()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -30,7 +34,11 @@ namespace Auroria
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            WorldAssembler.LoadContent(Content);
+            myWorld = new WorldAssembler();
+            myInput = new Input();
+            myUI = new UI();
+
+            myWorld.LoadContent(Content);
             // TODO: use this.Content to load your game content here
         }
 
@@ -39,8 +47,8 @@ namespace Auroria
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            UI.Update(gameTime);
-            Input.Update(gameTime);
+            myUI.Update(gameTime);
+            myInput.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -53,7 +61,7 @@ namespace Auroria
 
             _spriteBatch.Begin();
 
-            UI.Draw(_spriteBatch);
+            myUI.Draw(_spriteBatch);
 
             _spriteBatch.End();
 
