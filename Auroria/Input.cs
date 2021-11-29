@@ -20,24 +20,24 @@ namespace Auroria
             KeyboardState keyState = Keyboard.GetState(); //get state of keyboard
 
             //move selection on grid, W = up, S = down, A = left, D = right
-            if (!(keyState.IsKeyDown(Keys.W) && keyState.IsKeyDown(Keys.S)))
+            if (!((keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.Up)) && (keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.Down))))
             {
-                if (keyState.IsKeyDown(Keys.W))
+                if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.Up))
                 {
                     player.Move(1, gameTime);
                 }
-                else if (keyState.IsKeyDown(Keys.S))
+                else if (keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.Down))
                 {
                     player.Move(2, gameTime);
                 }
             }
-            if (!(keyState.IsKeyDown(Keys.A) && keyState.IsKeyDown(Keys.D)))
+            if (!((keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.Left)) && (keyState.IsKeyDown(Keys.D) || keyState.IsKeyDown(Keys.Right))))
             {
-                if (keyState.IsKeyDown(Keys.A))
+                if (keyState.IsKeyDown(Keys.A) || keyState.IsKeyDown(Keys.Left))
                 {
                     player.Move(3, gameTime);
                 }
-                else if (keyState.IsKeyDown(Keys.D))
+                else if (keyState.IsKeyDown(Keys.D) || keyState.IsKeyDown(Keys.Right))
                 {
                     player.Move(4, gameTime);
                 }
