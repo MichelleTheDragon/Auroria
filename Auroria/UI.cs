@@ -27,18 +27,20 @@ namespace Auroria
         #endregion
 
         #region Methods
-        public void LoadContent(ContentManager content)
+        public void LoadContent(ContentManager content, GraphicsDeviceManager graphics)
         {
-
+            List<Component> newMenu = new List<Component>();
             var exitButton = new Button(content.Load<Texture2D>("Controls/Button"), content.Load<SpriteFont>("Fonts/Font"))
             {
-                Position = new Vector2(100, 100),
+                Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2),
                 Text = "Exit",
             };
 
             exitButton.Click += ExitButton_Click;
 
-            myWorld.AddComponent(exitButton);
+            newMenu.Add(exitButton);
+
+            myWorld.MenuComponents = newMenu;
         }
 
         public void Update(GameTime gameTime)

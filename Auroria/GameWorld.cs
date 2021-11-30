@@ -13,6 +13,8 @@ namespace Auroria
         private Color backgroundColour = Color.CornflowerBlue;
 
         private List<Component> gameComponents = new List<Component>();
+        private List<Component> menuComponents = new List<Component>();
+        public List<Component> MenuComponents { set { menuComponents = value; } }
 
         private List<GameObject> myGameObjects = new List<GameObject>();
         private PlayerObject player;
@@ -20,6 +22,9 @@ namespace Auroria
         private WorldAssembler myWorld;
         private UI myUI;
         private Input myInput;
+
+        private bool menuActive;
+        private bool escDown;
 
         public GameWorld()
         {
@@ -50,7 +55,7 @@ namespace Auroria
             myInput = new Input();
             myUI = new UI(this);
 
-            myUI.LoadContent(Content);
+            myUI.LoadContent(Content, _graphics);
             myWorld.LoadContent(Content, this);
             // TODO: use this.Content to load your game content here
 
@@ -60,15 +65,27 @@ namespace Auroria
 
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
+            if(Keyboard.GetState().IsKeyDown(Keys.Escape) && escDown != true)
             {
-                //myUI.MenuToggle();
-                Exit(); //to be replaced with line above
+                MenuToggle();
+                escDown = true;
+                //Exit(); //to be replaced with line above
+            } else if (Keyboard.GetState().IsKeyUp(Keys.Escape) && escDown == true)
+            {
+                escDown = false;
             }
 
             foreach (Component component in gameComponents)
             {
                 component.Update(gameTime);
+            }
+            if (menuActive == true)
+            {
+                foreach (Component menuComponent in menuComponents)
+                {
+                    menuComponent.Update(gameTime);
+                }
             }
             myUI.Update(gameTime);
             myInput.Update(gameTime, player);
@@ -96,6 +113,14 @@ namespace Auroria
             {
                 component.Draw(gameTime, _spriteBatch);
             }
+            if (menuActive == true)
+            {
+                foreach (Component menuComponent in menuComponents)
+                {
+                    menuComponent.Draw(gameTime, _spriteBatch);
+                }
+            }
+
 
             _spriteBatch.End();
 
@@ -112,6 +137,11 @@ namespace Auroria
         public void AddComponent(Component newComponent)
         {
             gameComponents.Add(newComponent);
+        }
+
+        public void MenuToggle()
+        {
+            menuActive = !menuActive;
         }
     }
 }

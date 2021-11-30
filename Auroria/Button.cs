@@ -38,7 +38,7 @@ namespace Auroria
         {
             get
             {
-                return new Rectangle((int)Position.X, (int)Position.Y, texture.Width, texture.Height);
+                return new Rectangle((int)Position.X - texture.Width / 2, (int)Position.Y - texture.Height / 2, texture.Width, texture.Height);
             }
         }
         public string Text { get; set; }
