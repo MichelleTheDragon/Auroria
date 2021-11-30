@@ -13,9 +13,11 @@ namespace Auroria
         private Vector2 movement = Vector2.Zero;
         public Vector2 Movement { get { return movement; } set { movement = value; } }
 
-        public PlayerObject(Texture2D sprite, Vector2 worldPos) : base(sprite, null, worldPos, false)
-        {
+        private GameWorld myWorld;
 
+        public PlayerObject(Texture2D sprite, Vector2 worldPos, GameWorld myWorld) : base(sprite, null, worldPos, false)
+        {
+            this.myWorld = myWorld;
         }
 
         public void Move(int moveDir, GameTime gameTime)

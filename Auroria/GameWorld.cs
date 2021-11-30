@@ -17,6 +17,7 @@ namespace Auroria
         public List<Component> MenuComponents { set { menuComponents = value; } }
 
         private List<GameObject> myGameObjects = new List<GameObject>();
+        public List<GameObject> MyGameObjects { get { return myGameObjects; } }
         private PlayerObject player;
 
         private WorldAssembler myWorld;
@@ -59,7 +60,7 @@ namespace Auroria
             myWorld.LoadContent(Content, this);
             // TODO: use this.Content to load your game content here
 
-            player = new PlayerObject(Content.Load<Texture2D>("Player"), new Vector2(_graphics.GraphicsDevice.Viewport.Width/2, _graphics.GraphicsDevice.Viewport.Height / 2));
+            player = new PlayerObject(Content.Load<Texture2D>("Player"), new Vector2(_graphics.GraphicsDevice.Viewport.Width/2, _graphics.GraphicsDevice.Viewport.Height / 2), this);
         }
 
 
