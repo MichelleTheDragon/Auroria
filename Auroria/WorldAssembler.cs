@@ -14,7 +14,14 @@ namespace Auroria
         private int[] tree = new int[] { 4, 0 };
         private int[] grass = new int[] { 1, 1 };
         private int[] plant = new int[] { 1, 1 };
-        private int[] flora = new int[] { 7, 0 };
+        private int[] water = new int[] { 3, 2 };
+        private int[] grassEdgeLeftTop = new int[] { 2, 2 };
+        private int[] grassEdgeRightTop = new int[] { 0, 2 };
+        private int[] grassBendLeftTop = new int[] { 2, 0 };
+        private int[] grassBendRightTop = new int[] { 0, 0 };
+        private int[] grassFlatTop = new int[] { 1, 2 };
+        private int[] grassFlatLeft = new int[] { 2, 1 };
+        private int[] grassFlatRight = new int[] { 0, 1 };
 
         private Texture2D tileSet;
 
@@ -39,7 +46,47 @@ namespace Auroria
             {
                 for (int x = 0; x < mapWidth; x++)
                 {
-                    gameWorld.AddObject(new Rock(tileSet, grass, new Vector2(x * 64, y * 64)));
+                    if (colors[y * mapWidth + x] == blue)
+                    {
+                        gameWorld.AddObject(new Rock(tileSet, water, new Vector2(x * 64, y * 64)));
+                        if (y != 0 && x != 0)
+                        {
+                            if (colors[(y - 1) * mapWidth + x - 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x - 1] == blue)
+                            {
+                                gameWorld.AddObject(new Rock(tileSet, grassEdgeLeftTop, new Vector2(x * 64, y * 64)));
+                            } 
+                            else if (colors[(y - 1) * mapWidth + x + 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x + 1] == blue)
+                            {
+                                gameWorld.AddObject(new Rock(tileSet, grassEdgeRightTop, new Vector2(x * 64, y * 64)));
+                            }
+                            else if (colors[(y - 1) * mapWidth + x] != blue && colors[y * mapWidth + x - 1] != blue)
+                            {
+                                gameWorld.AddObject(new Rock(tileSet, grassBendLeftTop, new Vector2(x * 64, y * 64)));
+                            }
+                            else if (colors[(y - 1) * mapWidth + x] != blue && colors[y * mapWidth + x + 1] != blue)
+                            {
+                                gameWorld.AddObject(new Rock(tileSet, grassBendRightTop, new Vector2(x * 64, y * 64)));
+                            }
+                            else if (colors[(y - 1) * mapWidth + x] != blue)
+                            {
+                                gameWorld.AddObject(new Rock(tileSet, grassFlatTop, new Vector2(x * 64, y * 64)));
+                            }
+                            else if (colors[y * mapWidth + x - 1] != blue)
+                            {
+                                gameWorld.AddObject(new Rock(tileSet, grassFlatLeft, new Vector2(x * 64, y * 64)));
+                            }
+                            else if (colors[y * mapWidth + x + 1] != blue)
+                            {
+                                gameWorld.AddObject(new Rock(tileSet, grassFlatRight, new Vector2(x * 64, y * 64)));
+                            }
+
+
+                        }
+                    } else
+                    {
+                        gameWorld.AddObject(new Rock(tileSet, grass, new Vector2(x * 64, y * 64)));
+                    }
+
                     if (colors[y * mapWidth + x] == black) 
                     {
                         gameWorld.AddObject(new Rock(tileSet, rock, new Vector2(x * 64, y * 64)));
@@ -51,10 +98,6 @@ namespace Auroria
                     else if (colors[y * mapWidth + x] == yellowGreen)
                     {
                         gameWorld.AddObject(new Rock(tileSet, plant, new Vector2(x * 64, y * 64)));
-                    }
-                    else if (colors[y * mapWidth + x] == blue) 
-                    {
-                        gameWorld.AddObject(new Rock(tileSet, flora, new Vector2(x * 64, y * 64)));
                     }
                 }
             }
