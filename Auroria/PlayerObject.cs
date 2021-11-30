@@ -8,6 +8,9 @@ namespace Auroria
 {
     class PlayerObject : GameObject
     {
+
+        #region Fields
+
         private float speed = 300.0f;
         public float Speed { get { return speed; } }
         private Vector2 movement = Vector2.Zero;
@@ -15,10 +18,18 @@ namespace Auroria
 
         private GameWorld myWorld;
 
+        #endregion
+        #region Properties
+        #endregion
+        #region Constructors
+
         public PlayerObject(Texture2D sprite, Vector2 worldPos, GameWorld myWorld) : base(sprite, null, worldPos, false)
         {
             this.myWorld = myWorld;
         }
+
+        #endregion
+        #region Methods
 
         public void Move(int moveDir, GameTime gameTime)
         {
@@ -37,6 +48,14 @@ namespace Auroria
                     worldPos.X += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
             }
+
+            #endregion
+
+
+
+
+
+
         }
     }
 }

@@ -9,6 +9,9 @@ namespace Auroria
 {
     public class WorldAssembler
     {
+
+        #region Fields
+
         private Texture2D map;
         private int[] rock = new int[] { 5, 0 };
         private int[] tree = new int[] { 4, 0 };
@@ -25,6 +28,13 @@ namespace Auroria
 
         private Texture2D tileSet;
 
+        #endregion
+        #region Properties
+        #endregion
+        #region Constructors
+        #endregion
+        #region Methods
+
         public void LoadContent(ContentManager content, GameWorld gameWorld)
         {
             tileSet = content.Load<Texture2D>("GameObjects/tilesetNotDone");
@@ -39,7 +49,7 @@ namespace Auroria
 
             Color black = new Color(0, 0, 0); //creates a black color
             Color green = new Color(0, 164, 19);
-            Color yellowGreen = new Color(186, 175, 1); 
+            Color yellowGreen = new Color(186, 175, 1);
             Color blue = new Color(72, 0, 255);
 
             for (int y = 0; y < mapHeight; y++)
@@ -54,7 +64,7 @@ namespace Auroria
                             if (colors[(y - 1) * mapWidth + x - 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x - 1] == blue)
                             {
                                 gameWorld.AddObject(new Rock(tileSet, grassEdgeLeftTop, new Vector2(x * 64, y * 64)));
-                            } 
+                            }
                             else if (colors[(y - 1) * mapWidth + x + 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x + 1] == blue)
                             {
                                 gameWorld.AddObject(new Rock(tileSet, grassEdgeRightTop, new Vector2(x * 64, y * 64)));
@@ -82,16 +92,17 @@ namespace Auroria
 
 
                         }
-                    } else
+                    }
+                    else
                     {
                         gameWorld.AddObject(new Rock(tileSet, grass, new Vector2(x * 64, y * 64)));
                     }
 
-                    if (colors[y * mapWidth + x] == black) 
+                    if (colors[y * mapWidth + x] == black)
                     {
                         gameWorld.AddObject(new Rock(tileSet, rock, new Vector2(x * 64, y * 64)));
                     }
-                    else if (colors[y * mapWidth + x] == green) 
+                    else if (colors[y * mapWidth + x] == green)
                     {
                         gameWorld.AddObject(new Rock(tileSet, tree, new Vector2(x * 64, y * 64)));
                     }
@@ -107,5 +118,11 @@ namespace Auroria
         {
 
         }
+
+        #endregion
+
+
+
+
     }
 }

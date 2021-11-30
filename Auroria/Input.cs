@@ -9,6 +9,14 @@ namespace Auroria
     class Input
     {
 
+        #region Fields
+        #endregion
+        #region Properties
+        #endregion
+        #region Constructors
+        #endregion
+        #region Methods
+
         public void Update(GameTime gameTime, PlayerObject player)
         {
             KeyboardState keyState = Keyboard.GetState(); //get state of keyboard
@@ -40,6 +48,10 @@ namespace Auroria
                 {
                     player.Move(4, gameTime);
                 }
+
+                #endregion
+
+
             }
         }
     }

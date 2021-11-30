@@ -9,6 +9,9 @@ namespace Auroria
 {
     public abstract class GameObject
     {
+
+        #region Fields
+
         protected Texture2D sprite;
 
         protected float scale = 1.0f;
@@ -19,11 +22,14 @@ namespace Auroria
         protected SpriteEffects effects;
 
         protected bool isSolid;
-        public bool IsSolid {get { return isSolid; } }
+        public bool IsSolid { get { return isSolid; } }
 
         protected int[] tilePos;
 
-
+        #endregion
+        #region Properties
+        #endregion
+        #region Constructors
 
         public GameObject(Texture2D sprite, int[] tilePos, Vector2 worldPos, bool isSolid)
         {
@@ -44,6 +50,9 @@ namespace Auroria
             this.isSolid = isSolid;
         }
 
+        #endregion
+        #region Methods
+
         public void LoadContent(ContentManager content)
         {
 
@@ -58,5 +67,15 @@ namespace Auroria
         {
             spriteBatch.Draw(sprite, worldPos, rect, Color.White, 0.0f, origin, scale, effects, layer);
         }
+
+        #endregion
+
+
+
+
+
+
+
+
     }
 }
