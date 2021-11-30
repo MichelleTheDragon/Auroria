@@ -12,7 +12,7 @@ namespace Auroria
 
         private Color backgroundColour = Color.CornflowerBlue;
 
-        private List<Component> gameComponents;
+        private List<Component> gameComponents = new List<Component>();
 
         private List<GameObject> myGameObjects = new List<GameObject>();
         private PlayerObject player;
@@ -45,46 +45,31 @@ namespace Auroria
                         
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            var exitButton = new Button(Content.Load<Texture2D>("Controls/Button"), Content.Load<SpriteFont>("Fonts/Font"))
-            {
-                Position = new Vector2(100, 100),
-                Text = "Exit",
-            };
-
-            exitButton.Click += ExitButton_Click;
-
-            gameComponents = new List<Component>()
-            {
-                exitButton
-            };
 
             myWorld = new WorldAssembler();
             myInput = new Input();
-            myUI = new UI();
+            myUI = new UI(this);
 
+            myUI.LoadContent(Content);
             myWorld.LoadContent(Content, this);
             // TODO: use this.Content to load your game content here
 
             player = new PlayerObject(Content.Load<Texture2D>("Player"), new Vector2(_graphics.GraphicsDevice.Viewport.Width/2, _graphics.GraphicsDevice.Viewport.Height / 2));
         }
 
-        private void ExitButton_Click(object sender, System.EventArgs e)
-        {
-            Exit();
-        }
 
         protected override void Update(GameTime gameTime)
         {
-
-            foreach (var component in gameComponents)
-                component.Update(gameTime);
-
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 //myUI.MenuToggle();
                 Exit(); //to be replaced with line above
             }
 
+            foreach (Component component in gameComponents)
+            {
+                component.Update(gameTime);
+            }
             myUI.Update(gameTime);
             myInput.Update(gameTime, player);
 
@@ -107,10 +92,12 @@ namespace Auroria
             player.Draw(_spriteBatch);
             myUI.Draw(_spriteBatch);
 
-            foreach (var component in gameComponents)
+            foreach (Component component in gameComponents)
+            {
                 component.Draw(gameTime, _spriteBatch);
+            }
 
-                _spriteBatch.End();
+            _spriteBatch.End();
 
             // TODO: Add your drawing code here
 
@@ -120,6 +107,11 @@ namespace Auroria
         public void AddObject(GameObject newObject)
         {
             myGameObjects.Add(newObject);
+        }
+
+        public void AddComponent(Component newComponent)
+        {
+            gameComponents.Add(newComponent);
         }
     }
 }
