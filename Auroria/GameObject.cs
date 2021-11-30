@@ -21,14 +21,25 @@ namespace Auroria
         protected bool isSolid;
         public bool IsSolid {get { return isSolid; } }
 
+        protected int[] tilePos;
 
 
-        public GameObject(Texture2D sprite, Vector2 worldPos, bool isSolid)
+
+        public GameObject(Texture2D sprite, int[] tilePos, Vector2 worldPos, bool isSolid)
         {
             this.sprite = sprite;
             this.worldPos = worldPos;
-            rect = new Rectangle(0, 0, sprite.Width, sprite.Height);
-            origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
+            this.tilePos = tilePos;
+            if (tilePos != null)
+            {
+                rect = new Rectangle(tilePos[0] * 64, tilePos[1] * 64, 64, 64);
+                origin = new Vector2(32, 32);
+            }
+            else
+            {
+                rect = new Rectangle(0, 0, sprite.Width, sprite.Height);
+                origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
+            }
 
             this.isSolid = isSolid;
         }

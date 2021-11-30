@@ -8,9 +8,8 @@ namespace Auroria
 {
     public class Rock : GameObject
     {
-        public Rock(Texture2D sprite, Vector2 worldPos) : base(sprite, worldPos, true)
+        public Rock(Texture2D sprite, int[] tilePos, Vector2 worldPos) : base(sprite, tilePos, worldPos, true)
         {
-
         }
 
     }
