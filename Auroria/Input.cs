@@ -48,11 +48,11 @@ namespace Auroria
                 {
                     player.Move(4, gameTime);
                 }
-
-                #endregion
-
-
             }
         }
+        #endregion
+
+
+
     }
 }
