@@ -35,7 +35,7 @@ namespace Auroria
         #endregion
         #region Methods
 
-        public void LoadContent(ContentManager content, GameWorld gameWorld)
+        public void LoadContent(ContentManager content, GameWorld gameWorld, GraphicsDeviceManager graphics)
         {
             tileSet = content.Load<Texture2D>("GameObjects/tilesetNotDone");
 
@@ -112,6 +112,12 @@ namespace Auroria
                     }
                 }
             }
+            Texture2D[] sprites = new Texture2D[4];
+            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front");
+            sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back");
+            sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left");
+            sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right");
+            gameWorld.Player = new PlayerObject(sprites, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld);
         }
 
         public void Update(GameTime gameTime)

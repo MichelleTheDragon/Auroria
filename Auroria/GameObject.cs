@@ -13,6 +13,8 @@ namespace Auroria
         #region Fields
 
         protected Texture2D sprite;
+        protected Texture2D[] sprites;
+        protected int currentSprite = 0;
 
         protected float scale = 1.0f;
         protected float layer = 1.0f;
@@ -65,7 +67,12 @@ namespace Auroria
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(sprite, worldPos, rect, Color.White, 0.0f, origin, scale, effects, layer);
+            if (sprites == null) {
+                spriteBatch.Draw(sprite, worldPos, rect, Color.White, 0.0f, origin, scale, effects, layer);
+            } else
+            {
+                spriteBatch.Draw(sprites[currentSprite], worldPos, rect, Color.White, 0.0f, origin, scale, effects, layer);
+            }
         }
 
         #endregion
