@@ -19,6 +19,7 @@ namespace Auroria
         protected float scale = 1.0f;
         protected float layer = 1.0f;
         protected Vector2 worldPos;
+        public Vector2 WorldPos { get { return worldPos; } }
         protected Rectangle rect;
         protected Vector2 origin;
         protected SpriteEffects effects;
@@ -65,13 +66,13 @@ namespace Auroria
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, Vector2 worldOffset)
         {
             if (sprites == null) {
-                spriteBatch.Draw(sprite, worldPos, rect, Color.White, 0.0f, origin, scale, effects, layer);
+                spriteBatch.Draw(sprite, worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
             } else
             {
-                spriteBatch.Draw(sprites[currentSprite], worldPos, rect, Color.White, 0.0f, origin, scale, effects, layer);
+                spriteBatch.Draw(sprites[currentSprite], worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
             }
         }
 

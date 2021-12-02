@@ -18,13 +18,22 @@ namespace Auroria
         private int[] grass = new int[] { 1, 1 };
         private int[] plant = new int[] { 1, 1 };
         private int[] water = new int[] { 3, 2 };
-        private int[] grassEdgeLeftTop = new int[] { 2, 2 };
-        private int[] grassEdgeRightTop = new int[] { 0, 2 };
-        private int[] grassBendLeftTop = new int[] { 2, 0 };
-        private int[] grassBendRightTop = new int[] { 0, 0 };
+        private int[] grassEdgeTopLeft = new int[] { 2, 2 };
+        private int[] grassEdgeTopRight = new int[] { 0, 2 };
+        private int[] grassEdgeBottomLeft = new int[] { 10, 5 };
+        private int[] grassEdgeBottomRight = new int[] { 8, 5 };
+        private int[] grassBendTopLeft = new int[] { 2, 0 };
+        private int[] grassBendTopRight = new int[] { 0, 0 };
+        private int[] grassBendBottomLeft = new int[] { 10, 7 };
+        private int[] grassBendBottomRight = new int[] { 8, 7 };
         private int[] grassFlatTop = new int[] { 1, 2 };
+        private int[] grassFlatBottom = new int[] { 9, 5 };
         private int[] grassFlatLeft = new int[] { 2, 1 };
+        private int[] grassFlatLeft2 = new int[] { 10, 6 };
+        private int[] grassFlatLeft3 = new int[] { 10, 4 };
         private int[] grassFlatRight = new int[] { 0, 1 };
+        private int[] grassFlatRight2 = new int[] { 8, 6 };
+        private int[] grassFlatRight3 = new int[] { 8, 4 };
 
         private Texture2D tileSet;
 
@@ -58,39 +67,112 @@ namespace Auroria
                 {
                     if (colors[y * mapWidth + x] == blue)
                     {
-                        gameWorld.AddObject(new Rock(tileSet, water, new Vector2(x * 64, y * 64)));
+                        int solidGround = 0;
+                        if (colors[(y - 1) * mapWidth + x] != blue)
+                        {
+                            solidGround++;
+                        }
+                        if (colors[(y + 1) * mapWidth + x] != blue)
+                        {
+                            solidGround++;
+                        }
+                        if (colors[y * mapWidth + x - 1] != blue)
+                        {
+                            solidGround++;
+                        }
+                        if (colors[y * mapWidth + x + 1] != blue)
+                        {
+                            solidGround++;
+                        }
+                        if (solidGround >= 3)
+                        {
+                            gameWorld.AddObject(new Rock(tileSet, grass, new Vector2(x * 64, y * 64)));
+                        } else
+                        {
+                            gameWorld.AddObject(new Rock(tileSet, water, new Vector2(x * 64, y * 64)));
+                        }
                         if (y != 0 && x != 0)
                         {
-                            if (colors[(y - 1) * mapWidth + x - 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x - 1] == blue)
+                            if (colors[(y + 1) * mapWidth + x] == blue && colors[y * mapWidth + x + 1] == blue)
                             {
-                                gameWorld.AddObject(new Rock(tileSet, grassEdgeLeftTop, new Vector2(x * 64, y * 64)));
+                                if (colors[(y - 1) * mapWidth + x - 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x - 1] == blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassEdgeTopLeft, new Vector2(x * 64, y * 64)));
+                                }
+                                else if (colors[(y - 1) * mapWidth + x] != blue && colors[y * mapWidth + x - 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassBendTopLeft, new Vector2(x * 64, y * 64)));
+                                }
                             }
-                            else if (colors[(y - 1) * mapWidth + x + 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x + 1] == blue)
+                            if (colors[(y + 1) * mapWidth + x] == blue && colors[y * mapWidth + x - 1] == blue)
                             {
-                                gameWorld.AddObject(new Rock(tileSet, grassEdgeRightTop, new Vector2(x * 64, y * 64)));
+                                if (colors[(y - 1) * mapWidth + x + 1] != blue && colors[(y - 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x + 1] == blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassEdgeTopRight, new Vector2(x * 64, y * 64)));
+                                }
+                                else if (colors[(y - 1) * mapWidth + x] != blue && colors[y * mapWidth + x + 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassBendTopRight, new Vector2(x * 64, y * 64)));
+                                }
                             }
-                            else if (colors[(y - 1) * mapWidth + x] != blue && colors[y * mapWidth + x - 1] != blue)
+                            if (colors[(y - 1) * mapWidth + x] == blue && colors[y * mapWidth + x + 1] == blue)
                             {
-                                gameWorld.AddObject(new Rock(tileSet, grassBendLeftTop, new Vector2(x * 64, y * 64)));
+                                if (colors[(y + 1) * mapWidth + x - 1] != blue && colors[(y + 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x - 1] == blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassEdgeBottomLeft, new Vector2(x * 64, y * 64)));
+                                }
+                                else if (colors[(y + 1) * mapWidth + x] != blue && colors[y * mapWidth + x - 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassBendBottomLeft, new Vector2(x * 64, y * 64)));
+                                }
                             }
-                            else if (colors[(y - 1) * mapWidth + x] != blue && colors[y * mapWidth + x + 1] != blue)
+                            if (colors[(y - 1) * mapWidth + x] == blue && colors[y * mapWidth + x - 1] == blue)
                             {
-                                gameWorld.AddObject(new Rock(tileSet, grassBendRightTop, new Vector2(x * 64, y * 64)));
+                                if (colors[(y + 1) * mapWidth + x + 1] != blue && colors[(y + 1) * mapWidth + x] == blue && colors[(y) * mapWidth + x + 1] == blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassEdgeBottomRight, new Vector2(x * 64, y * 64)));
+                                }
+                                else if (colors[(y + 1) * mapWidth + x] != blue && colors[y * mapWidth + x + 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassBendBottomRight, new Vector2(x * 64, y * 64)));
+                                }
                             }
-                            else if (colors[(y - 1) * mapWidth + x] != blue)
+                            if (colors[(y - 1) * mapWidth + x] != blue && colors[(y + 1) * mapWidth + x] == blue && colors[y * mapWidth + x - 1] == blue && colors[y * mapWidth + x + 1] == blue)
                             {
                                 gameWorld.AddObject(new Rock(tileSet, grassFlatTop, new Vector2(x * 64, y * 64)));
                             }
-                            else if (colors[y * mapWidth + x - 1] != blue)
+                            else if (colors[(y - 1) * mapWidth + x] == blue && colors[(y + 1) * mapWidth + x] != blue && colors[y * mapWidth + x - 1] == blue && colors[y * mapWidth + x + 1] == blue)
                             {
-                                gameWorld.AddObject(new Rock(tileSet, grassFlatLeft, new Vector2(x * 64, y * 64)));
+                                gameWorld.AddObject(new Rock(tileSet, grassFlatBottom, new Vector2(x * 64, y * 64)));
                             }
-                            else if (colors[y * mapWidth + x + 1] != blue)
+                            else if (colors[(y - 1) * mapWidth + x] == blue && colors[(y + 1) * mapWidth + x] == blue && colors[y * mapWidth + x - 1] != blue && colors[y * mapWidth + x + 1] == blue)
                             {
-                                gameWorld.AddObject(new Rock(tileSet, grassFlatRight, new Vector2(x * 64, y * 64)));
+                                if(colors[(y + 2) * mapWidth + x] != blue || colors[(y + 2) * mapWidth + x + 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassFlatLeft2, new Vector2(x * 64, y * 64)));
+                                } else if (colors[(y + 3) * mapWidth + x] != blue || colors[(y + 3) * mapWidth + x + 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassFlatLeft3, new Vector2(x * 64, y * 64)));
+                                }
+                                else
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassFlatLeft, new Vector2(x * 64, y * 64)));
+                                }
                             }
-
-
+                            else if (colors[(y - 1) * mapWidth + x] == blue && colors[(y + 1) * mapWidth + x] == blue && colors[y * mapWidth + x - 1] == blue && colors[y * mapWidth + x + 1] != blue)
+                            {
+                                if (colors[(y + 2) * mapWidth + x] != blue || colors[(y + 2) * mapWidth + x - 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassFlatRight2, new Vector2(x * 64, y * 64)));
+                                } else if (colors[(y + 3) * mapWidth + x] != blue || colors[(y + 3) * mapWidth + x - 1] != blue)
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassFlatRight3, new Vector2(x * 64, y * 64)));
+                                }
+                                else
+                                {
+                                    gameWorld.AddObject(new Rock(tileSet, grassFlatRight, new Vector2(x * 64, y * 64)));
+                                }
+                            }
                         }
                     }
                     else

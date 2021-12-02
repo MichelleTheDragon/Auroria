@@ -28,6 +28,9 @@ namespace Auroria
         private bool menuActive;
         private bool escDown;
 
+        private Vector2 worldOffset = Vector2.Zero;
+        public Vector2 WorldOffset { get { return worldOffset; } set { worldOffset = value; } }
+
         public GameWorld()
         {
             _graphics = new GraphicsDeviceManager(this);
@@ -97,16 +100,16 @@ namespace Auroria
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             _spriteBatch.Begin();
 
 
             foreach(GameObject myObject in myGameObjects)
             {
-                myObject.Draw(_spriteBatch);
+                myObject.Draw(_spriteBatch, worldOffset);
             }
-            player.Draw(_spriteBatch);
+            player.Draw(_spriteBatch, Vector2.Zero);
             myUI.Draw(_spriteBatch);
 
             foreach (Component component in gameComponents)

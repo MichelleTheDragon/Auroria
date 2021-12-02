@@ -44,7 +44,8 @@ namespace Auroria
                         rect = new Rectangle(0, 0, sprites[1].Width, sprites[1].Height);
                         origin = new Vector2(sprites[1].Width / 2, sprites[1].Height / 2);
                     }
-                    worldPos.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
+                    myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X, myWorld.WorldOffset.Y + (float)gameTime.ElapsedGameTime.TotalSeconds * speed);
+                    //worldPos.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
                 case 2:
                     if (currentSprite != 0)
@@ -53,7 +54,8 @@ namespace Auroria
                         rect = new Rectangle(0, 0, sprites[0].Width, sprites[0].Height);
                         origin = new Vector2(sprites[0].Width / 2, sprites[0].Height / 2);
                     }
-                    worldPos.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
+                    myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X, myWorld.WorldOffset.Y - (float)gameTime.ElapsedGameTime.TotalSeconds * speed);
+                    //worldPos.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
                 case 3:
                     if (currentSprite != 2)
@@ -62,7 +64,8 @@ namespace Auroria
                         rect = new Rectangle(0, 0, sprites[2].Width, sprites[2].Height);
                         origin = new Vector2(sprites[2].Width / 2, sprites[2].Height / 2);
                     }
-                    worldPos.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
+                    myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X + (float)gameTime.ElapsedGameTime.TotalSeconds * speed, myWorld.WorldOffset.Y);
+                    //worldPos.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
                 case 4:
                     if (currentSprite != 3)
@@ -71,7 +74,8 @@ namespace Auroria
                         rect = new Rectangle(0, 0, sprites[3].Width, sprites[3].Height);
                         origin = new Vector2(sprites[3].Width / 2, sprites[3].Height / 2);
                     }
-                    worldPos.X += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
+                    myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X - (float)gameTime.ElapsedGameTime.TotalSeconds * speed, myWorld.WorldOffset.Y);
+                    //worldPos.X += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
             }
 
