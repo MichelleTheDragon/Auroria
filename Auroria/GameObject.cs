@@ -34,6 +34,13 @@ namespace Auroria
         #endregion
         #region Constructors
 
+        /// <summary>
+        ///     Sprite - Tile Position - World Position - is Solid
+        /// </summary>
+        /// <param name="sprite">Single Sprite</param>
+        /// <param name="tilePos">Location of sprite if on tilesheet</param>
+        /// <param name="worldPos">The objects location in the world</param>
+        /// <param name="isSolid">Is the object solid (can't walk through)</param>
         public GameObject(Texture2D sprite, int[] tilePos, Vector2 worldPos, bool isSolid)
         {
             this.sprite = sprite;

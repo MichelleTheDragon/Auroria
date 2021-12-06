@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Auroria
 {
-    class Tree : GameObject
+    public class Grass : GameObject
     {
-        public Tree(Texture2D sprite, int[] tilePos, Vector2 worldPos) : base(sprite, tilePos, worldPos, true)
+        public Grass(Texture2D sprite, int[] tilePos, Vector2 worldPos) : base(sprite, tilePos, worldPos, false)
         {
         }
     }
