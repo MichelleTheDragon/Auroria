@@ -8,7 +8,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace Auroria
 {
-    class Seed
+    class Seed : GameObject
     {
         #region Fields
 
@@ -89,6 +89,11 @@ namespace Auroria
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(sprite, worldPos, rect, Color.White, 0.0f, origin, scale, effects, layer);
+        }
+
+        public override void OnCollision(GameObject other)
+        {
+            throw new NotImplementedException();
         }
 
         #endregion
