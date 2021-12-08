@@ -33,6 +33,29 @@ namespace Auroria
         #endregion
         #region Methods
 
+        public override void Update(GameTime gameTime, GameWorld gameWorld)
+        {
+            foreach (GameObject gameObject in gameWorld.MyGameObjects)
+            {
+                if (gameObject == this)
+                    continue;
+
+                if ((this.velocity.X > 0 && this.IsTouchingLeft(gameObject)) ||
+                   (this.velocity.X < 0 && this.IsTouchingRight(gameObject)))
+                    this.velocity.X = 0;
+
+                if ((this.velocity.Y > 0 && this.IsTouchingTop(gameObject)) ||
+                   (this.velocity.Y < 0 && this.IsTouchingBottom(gameObject)))
+                    this.velocity.Y = 0;
+
+                worldPos += velocity;
+
+                velocity = Vector2.Zero;
+            }
+        }
+
+
+
         public void Move(int moveDir, GameTime gameTime)
         {
             switch (moveDir)

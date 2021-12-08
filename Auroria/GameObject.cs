@@ -19,9 +19,10 @@ namespace Auroria
         protected float scale = 1.0f;
         protected float layer = 1.0f;
         protected Vector2 worldPos;
-        public Vector2 WorldPos { get { return worldPos; } }
+        public Vector2 WorldPos { get { return worldPos; } set { worldPos = value; } }
         protected Rectangle rect;
         protected Vector2 origin;
+        public Vector2 velocity;
         protected SpriteEffects effects;
 
         protected bool isSolid;
@@ -63,12 +64,45 @@ namespace Auroria
         #endregion
         #region Methods
 
+        #region Collision
+
+        protected bool IsTouchingLeft(GameObject gameObject)
+        {
+            return this.rect.Right + this.velocity.X > gameObject.rect.Left &&
+                   this.rect.Left < gameObject.rect.Left &&
+                   this.rect.Bottom > gameObject.rect.Top &&
+                   this.rect.Top < gameObject.rect.Bottom;
+        }
+        protected bool IsTouchingRight(GameObject gameObject)
+        {
+            return this.rect.Left + this.velocity.X < gameObject.rect.Right &&
+                   this.rect.Right > gameObject.rect.Right &&
+                   this.rect.Bottom > gameObject.rect.Top &&
+                   this.rect.Top < gameObject.rect.Bottom;
+        }
+        protected bool IsTouchingTop(GameObject gameObject)
+        {
+            return this.rect.Bottom + this.velocity.Y > this.rect.Top &&
+                   this.rect.Top < gameObject.rect.Top &&
+                   this.rect.Right > gameObject.rect.Left &&
+                   this.rect.Left < gameObject.rect.Right;  
+        }
+        protected bool IsTouchingBottom(GameObject gameObject)
+        {
+            return this.rect.Top + this.velocity.Y < this.rect.Bottom &&
+                   this.rect.Bottom < gameObject.rect.Bottom &&
+                   this.rect.Right > gameObject.rect.Left &&
+                   this.rect.Left < gameObject.rect.Right;
+        }
+
+        #endregion
+
         public void LoadContent(ContentManager content)
         {
 
         }
 
-        public void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, GameWorld gameWorld)
         {
 
         }

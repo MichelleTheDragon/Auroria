@@ -143,7 +143,7 @@ namespace Auroria
         }
 
         public void MenuToggle()
-        {
+        {   
             menuActive = !menuActive;
         }
     }
