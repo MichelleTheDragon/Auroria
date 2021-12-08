@@ -60,7 +60,7 @@ namespace Auroria
             Color green = new Color(0, 164, 19);
             Color yellowGreen = new Color(186, 175, 1);
             Color blue = new Color(72, 0, 255);
-
+            
             for (int y = 0; y < mapHeight; y++)
             {
                 for (int x = 0; x < mapWidth; x++)
@@ -195,11 +195,17 @@ namespace Auroria
                 }
             }
             Texture2D[] sprites = new Texture2D[4];
-            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front");
-            sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back");
-            sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left");
-            sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right");
+            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front_64");
+            sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back_64");
+            sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left_64");
+            sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right_64");
             gameWorld.Player = new PlayerObject(sprites, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld);
+
+            //gameWorld.AddObject(new Grass(tileSet, grass, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 64 * 2, graphics.GraphicsDevice.Viewport.Height / 2)));
+            //gameWorld.AddObject(new Rock(tileSet, rock, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - 64 * 2, graphics.GraphicsDevice.Viewport.Height / 2)));
+            //gameWorld.AddObject(new Water(tileSet, water, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2 + 64 * 2)));
+
+
         }
 
         public void Update(GameTime gameTime)

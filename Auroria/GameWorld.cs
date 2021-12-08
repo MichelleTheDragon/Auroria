@@ -19,7 +19,7 @@ namespace Auroria
         private List<GameObject> myGameObjects = new List<GameObject>();
         public List<GameObject> MyGameObjects { get { return myGameObjects; } }
         private PlayerObject player;
-        public PlayerObject Player { set { player = value; } }
+        public PlayerObject Player { get { return player; } set { player = value; } }
 
         private WorldAssembler myWorld;
         private UI myUI;
@@ -78,6 +78,7 @@ namespace Auroria
                 escDown = false;
             }
 
+            player.Update(gameTime);
             foreach (Component component in gameComponents)
             {
                 component.Update(gameTime);
@@ -142,7 +143,7 @@ namespace Auroria
         }
 
         public void MenuToggle()
-        {
+        {   
             menuActive = !menuActive;
         }
     }
