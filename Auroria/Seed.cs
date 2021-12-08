@@ -42,16 +42,7 @@ namespace Auroria
 
         public Seed(Texture2D sprite, int[] tilePos, Vector2 worldPos) : base(sprite, tilePos, worldPos, true)
         {
-            if (tilePos != null)
-            {
-                rect = new Rectangle(tilePos[0] * 64, tilePos[1] * 64, 64, 64);
-                origin = new Vector2(32, 32);
-            }
-            else
-            {
-                rect = new Rectangle(0, 0, sprite.Width, sprite.Height);
-                origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
-            }
+
         }
 
         #endregion

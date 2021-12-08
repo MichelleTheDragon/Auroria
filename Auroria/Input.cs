@@ -10,23 +10,34 @@ namespace Auroria
     {
 
         #region Fields
+        private PlayerObject player;
+        private UI myUI;
+        private bool spaceDown;
+
         #endregion
         #region Properties
         #endregion
         #region Constructors
+        public Input(PlayerObject player, UI myUI)
+        {
+            this.player = player;
+            this.myUI = myUI;
+        }
         #endregion
         #region Methods
 
-        public void Update(GameTime gameTime, PlayerObject player)
+        public void Update(GameTime gameTime)
         {
             KeyboardState keyState = Keyboard.GetState(); //get state of keyboard
-            Movement(gameTime, player, keyState);
+            Movement(gameTime, keyState);
+            Hotbar(gameTime, keyState);
+            OtherHotkeys(gameTime, keyState);
         }
 
-        private void Movement(GameTime gameTime, PlayerObject player, KeyboardState keyState)
+        private void Movement(GameTime gameTime, KeyboardState keyState)
         {
 
-            //move selection on grid, W = up, S = down, A = left, D = right
+            //move character around, W = up, S = down, A = left, D = right
             if (!((keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.Up)) && (keyState.IsKeyDown(Keys.S) || keyState.IsKeyDown(Keys.Down))))
             {
                 if (keyState.IsKeyDown(Keys.W) || keyState.IsKeyDown(Keys.Up))
@@ -48,6 +59,28 @@ namespace Auroria
                 {
                     player.Move(4, gameTime);
                 }
+            }
+        }
+
+        private void Hotbar(GameTime gameTime, KeyboardState keyState)
+        {
+
+        }
+
+        private void OtherHotkeys(GameTime gameTime, KeyboardState keyState)
+        {
+            //Plant a seed
+            if (keyState.IsKeyDown(Keys.Space) && spaceDown != true)
+            {
+                if (myUI.CurrentType == "Seed")
+                {
+                    //player.PlantSeed(myUI.currentType[1]);
+                }
+                spaceDown = true;
+            }
+            else if (keyState.IsKeyUp(Keys.Space) && spaceDown == true)
+            {
+                spaceDown = false;
             }
         }
         #endregion

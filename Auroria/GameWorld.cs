@@ -57,11 +57,11 @@ namespace Auroria
 
 
             myWorld = new WorldAssembler();
-            myInput = new Input();
             myUI = new UI(this);
 
             myUI.LoadContent(Content, _graphics);
             myWorld.LoadContent(Content, this, _graphics);
+            myInput = new Input(player, myUI);
             // TODO: use this.Content to load your game content here
         }
 
@@ -73,7 +73,6 @@ namespace Auroria
             {
                 MenuToggle();
                 escDown = true;
-                //Exit(); //to be replaced with line above
             } else if (Keyboard.GetState().IsKeyUp(Keys.Escape) && escDown == true)
             {
                 escDown = false;
@@ -91,7 +90,7 @@ namespace Auroria
                 }
             }
             myUI.Update(gameTime);
-            myInput.Update(gameTime, player);
+            myInput.Update(gameTime);
 
             // TODO: Add your update logic here
 

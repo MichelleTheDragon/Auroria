@@ -7,10 +7,15 @@ using System.Text;
 
 namespace Auroria
 {
-    class UI
+    public class UI
     {
         #region Fields
         private GameWorld myWorld;
+        private string currentType;
+        private int currentSeed;
+        public string CurrentType { get { return currentType; } }
+        public int CurrentSeed { get { return currentSeed; } }
+
 
         #endregion
 
