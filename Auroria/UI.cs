@@ -35,17 +35,26 @@ namespace Auroria
         public void LoadContent(ContentManager content, GraphicsDeviceManager graphics)
         {
             List<Component> newMenu = new List<Component>();
+            List<Component> toolbar = new List<Component>();
             var exitButton = new Button(content.Load<Texture2D>("Controls/Button"), content.Load<SpriteFont>("Fonts/Font"))
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2),
                 Text = "Exit",
             };
 
+            var toolbar1 = new Button(content.Load<Texture2D>("Controls/toolbarVersionTwo"), content.Load<SpriteFont>("Fonts/Font"))
+            {
+                Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                Text = "",
+            };
+
             exitButton.Click += ExitButton_Click;
 
             newMenu.Add(exitButton);
+            toolbar.Add(toolbar1);
 
             myWorld.MenuComponents = newMenu;
+            myWorld.GameComponents = toolbar;
         }
 
         public void Update(GameTime gameTime)

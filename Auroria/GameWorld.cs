@@ -15,6 +15,7 @@ namespace Auroria
         private List<Component> gameComponents = new List<Component>();
         private List<Component> menuComponents = new List<Component>();
         public List<Component> MenuComponents { set { menuComponents = value; } }
+        public List<Component> GameComponents { set { gameComponents = value; } }
 
         private List<GameObject> myGameObjects = new List<GameObject>();
         public List<GameObject> MyGameObjects { get { return myGameObjects; } }
@@ -30,6 +31,7 @@ namespace Auroria
 
         private Vector2 worldOffset = Vector2.Zero;
         public Vector2 WorldOffset { get { return worldOffset; } set { worldOffset = value; } }
+        public bool MenuActive { get { return menuActive; } }
 
         public GameWorld()
         {

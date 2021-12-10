@@ -23,6 +23,8 @@ namespace Auroria
 
         private Texture2D texture;
 
+        private GameWorld myWorld;
+
         #endregion
         #region Properties
 
@@ -56,13 +58,18 @@ namespace Auroria
             PenColour = Color.Black;
         }
 
+        public Button(GameWorld myWorld)
+        {
+            this.myWorld = myWorld;
+        }
+
         #endregion
         #region Methods
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             var colour = Color.White;
 
-            if (isMouseHovering)
+            if (isMouseHovering /*&& myWorld.MenuActive*/)
                 colour = Color.LightGray;
 
             spriteBatch.Draw(texture, Rectangle, colour);
