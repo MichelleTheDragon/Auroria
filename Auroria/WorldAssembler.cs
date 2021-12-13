@@ -36,7 +36,7 @@ namespace Auroria
         private int[] grassFlatRight3 = new int[] { 8, 4 };
 
         private Texture2D tileSet;
-
+        private Texture2D spriteSheet;  //For the spritesheet
         #endregion
         #region Properties
         #endregion
@@ -46,9 +46,9 @@ namespace Auroria
 
         public void LoadContent(ContentManager content, GameWorld gameWorld, GraphicsDeviceManager graphics)
         {
-            tileSet = content.Load<Texture2D>("GameObjects/tilesetNotDone");
+            tileSet = content.Load<Texture2D>("GameObjects/tilesetNotDone");    //Til at loade tileset med
 
-            map = content.Load<Texture2D>("TestMap");
+            map = content.Load<Texture2D>("TestMap");   //Til at tegne kortet med
 
             int mapWidth = map.Width;
             int mapHeight = map.Height;
@@ -194,11 +194,18 @@ namespace Auroria
                     }
                 }
             }
-            Texture2D[] sprites = new Texture2D[4];
-            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front_64");
-            sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back_64");
-            sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left_64");
-            sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right_64");
+
+            spriteSheet = content.Load<Texture2D>("GameObjects/GOLEM_spriteset");   //Loads the spritesheet
+            //gameWorld.Player = new PlayerObject(spriteSheet, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld);  //Contruct for the spritesheet
+
+
+            Texture2D[] sprites = new Texture2D[4]; //Array for nuværende sprites
+            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front_64"); //Front siden - nedad eller stille stående
+            sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back_64");  //Med ryggen til
+            sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left_64");  //Mod venstre
+            sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right_64"); //Mod højre
+
+
             gameWorld.Player = new PlayerObject(sprites, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld);
 
             //gameWorld.AddObject(new Grass(tileSet, grass, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 64 * 2, graphics.GraphicsDevice.Viewport.Height / 2)));

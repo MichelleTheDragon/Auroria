@@ -109,7 +109,7 @@ namespace Auroria
 
         public void Draw(SpriteBatch spriteBatch, Vector2 worldOffset)
         {
-            if (sprites == null) {
+            if (sprites == null) {  //Tager imod sprites
                 spriteBatch.Draw(sprite, worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
             } else
             {

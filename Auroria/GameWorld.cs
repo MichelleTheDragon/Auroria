@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 
 namespace Auroria
@@ -33,6 +34,9 @@ namespace Auroria
         private Vector2 worldOffset = Vector2.Zero;
         public Vector2 WorldOffset { get { return worldOffset; } set { worldOffset = value; } }
         public bool MenuActive { get { return menuActive; } }
+        //Sounds
+        Song bgMusicOne;    //Variable for the music
+
 
         public GameWorld()
         {
@@ -66,6 +70,9 @@ namespace Auroria
             myWorld.LoadContent(Content, this, _graphics);
             myInput = new Input(player, myUI);
             // TODO: use this.Content to load your game content here
+            bgMusicOne = Content.Load<Song>("Sounds/Behold_a_Square_House");    //The background music
+
+            MediaPlayer.Play(bgMusicOne);   //Plays it
         }
 
 
