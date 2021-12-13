@@ -36,9 +36,14 @@ namespace Auroria
         {
             List<Component> newMenu = new List<Component>();
             List<Component> toolbar = new List<Component>();
+            var FullScreenButton = new Button(content.Load<Texture2D>("Controls/Button"), content.Load<SpriteFont>("Fonts/Font"))
+            {
+                Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2 - 30),
+                Text = "Toggle Fullscreen",
+            }; 
             var exitButton = new Button(content.Load<Texture2D>("Controls/Button"), content.Load<SpriteFont>("Fonts/Font"))
             {
-                Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2),
+                Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2 + 30),
                 Text = "Exit",
             };
 
@@ -48,8 +53,10 @@ namespace Auroria
                 Text = "",
             };
 
+            FullScreenButton.Click += ToggleFullscreen;
             exitButton.Click += ExitButton_Click;
 
+            newMenu.Add(FullScreenButton);
             newMenu.Add(exitButton);
             toolbar.Add(toolbar1);
 
@@ -67,6 +74,11 @@ namespace Auroria
 
             // TODO: Add your drawing code here
 
+        }
+
+        private void ToggleFullscreen(object sender, System.EventArgs e)
+        {
+            myWorld.ToggleFullscreen();
         }
         private void ExitButton_Click(object sender, System.EventArgs e)
         {

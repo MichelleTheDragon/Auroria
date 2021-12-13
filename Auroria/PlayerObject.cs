@@ -104,6 +104,7 @@ namespace Auroria
                 }
             }
             worldPos += this.velocity;
+            myWorld.WorldOffset -= this.velocity;
 
             this.velocity = Vector2.Zero;
         }

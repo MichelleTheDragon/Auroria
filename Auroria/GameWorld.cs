@@ -28,6 +28,7 @@ namespace Auroria
 
         private bool menuActive;
         private bool escDown;
+        private bool isFullscreen;
 
         private Vector2 worldOffset = Vector2.Zero;
         public Vector2 WorldOffset { get { return worldOffset; } set { worldOffset = value; } }
@@ -111,7 +112,7 @@ namespace Auroria
             {
                 myObject.Draw(_spriteBatch, worldOffset);
             }
-            player.Draw(_spriteBatch, Vector2.Zero);
+            player.Draw(_spriteBatch, worldOffset);
             myUI.Draw(_spriteBatch);
 
             foreach (Component component in gameComponents)
@@ -144,6 +145,12 @@ namespace Auroria
             gameComponents.Add(newComponent);
         }
 
+        public void ToggleFullscreen()
+        {
+            isFullscreen = !isFullscreen;
+            _graphics.IsFullScreen = isFullscreen; //set the window to fullscreen
+            _graphics.ApplyChanges(); //applies the changes
+        }
         public void MenuToggle()
         {   
             menuActive = !menuActive;
