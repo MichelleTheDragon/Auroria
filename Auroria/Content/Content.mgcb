@@ -176,6 +176,18 @@
 /processorParam:TextureFormat=Color
 /build:GameObjects/GOLEM_right_64.png
 
+#begin GameObjects/GOLEM_spriteset.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GameObjects/GOLEM_spriteset.png
+
 #begin GameObjects/tilesetNotDone.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -187,6 +199,12 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GameObjects/tilesetNotDone.png
+
+#begin Sounds/Behold_a_Square_House.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/Behold_a_Square_House.mp3
 
 #begin TestMap.png
 /importer:TextureImporter
