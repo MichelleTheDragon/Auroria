@@ -19,6 +19,8 @@ namespace Auroria
 
         private bool isMouseHovering;
 
+        private bool isMenuButton;
+
         private MouseState previousMouseState;
 
         private Texture2D texture;
@@ -49,11 +51,13 @@ namespace Auroria
         #endregion
         #region Constructors
 
-        public Button(Texture2D texture,SpriteFont font)
+        public Button(Texture2D texture,SpriteFont font,bool isMenuButton)
         {
             this.texture = texture;
             
             this.font = font;
+
+            this.isMenuButton = isMenuButton;
 
             PenColour = Color.Black;
         }
@@ -69,7 +73,9 @@ namespace Auroria
         {
             var colour = Color.White;
 
-            if (isMouseHovering /*&& myWorld.MenuActive*/)
+                
+
+            if (isMouseHovering && isMenuButton)
                 colour = Color.LightGray;
 
             spriteBatch.Draw(texture, Rectangle, colour);
