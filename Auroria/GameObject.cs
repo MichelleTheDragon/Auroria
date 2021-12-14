@@ -68,29 +68,29 @@ namespace Auroria
 
         protected bool IsTouchingLeft(GameObject myGameObject)
         {
-            return  this.worldPos.X + this.rect.Right + this.velocity.X > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
-                    this.worldPos.X + this.rect.Left < myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
+            return  this.worldPos.X + this.rect.Right - 10 + this.velocity.X > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
+                    this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
                     this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
-                    this.worldPos.Y + this.rect.Top + 10 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
+                    this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
         }
         protected bool IsTouchingRight(GameObject myGameObject)
         {
-            return this.worldPos.X + this.rect.Left + this.velocity.X < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
-                   this.worldPos.X + this.rect.Right > myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
+            return this.worldPos.X + this.rect.Left + 10 + this.velocity.X < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
+                   this.worldPos.X + this.rect.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
                    this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.Y + this.rect.Top + 10 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
+                   this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
         }
         protected bool IsTouchingTop(GameObject myGameObject)
         {
-            return this.worldPos.Y + this.rect.Bottom + this.velocity.Y > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.Y + this.rect.Top < myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
+            return this.worldPos.Y + this.rect.Bottom - 10 + this.velocity.Y > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
+                   this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
                    this.worldPos.X + this.rect.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
                    this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;  
         }
         protected bool IsTouchingBottom(GameObject myGameObject)
         {
-            return this.worldPos.Y + this.rect.Top + this.velocity.Y < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.Y + this.rect.Bottom > myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
+            return this.worldPos.Y + this.rect.Top + 30 + this.velocity.Y < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
+                   this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
                    this.worldPos.X + this.rect.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
                    this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;
         }
@@ -105,6 +105,11 @@ namespace Auroria
         public virtual void Update(GameTime gameTime)
         {
 
+        }
+
+        protected void ChangeSpriteTile()
+        {
+            rect = new Rectangle(tilePos[0] * 64, tilePos[1] * 64, 64, 64);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 worldOffset)

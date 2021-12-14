@@ -64,7 +64,7 @@ namespace Auroria
 
             myUI.LoadContent(Content, _graphics);
             myWorld.LoadContent(Content, this, _graphics);
-            myInput = new Input(player, myUI);
+            myInput = new Input(player, myUI, this);
             // TODO: use this.Content to load your game content here
         }
 
@@ -81,6 +81,10 @@ namespace Auroria
                 escDown = false;
             }
 
+            foreach (GameObject myObject in myGameObjects)
+            {
+                myObject.Update(gameTime);
+            }
             player.Update(gameTime);
             foreach (Component component in gameComponents)
             {

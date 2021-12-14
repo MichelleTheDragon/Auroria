@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -12,16 +13,21 @@ namespace Auroria
         #region Fields
         private PlayerObject player;
         private UI myUI;
+        private GameWorld myWorld;
         private bool spaceDown;
+        private Texture2D newPlant;
+
 
         #endregion
         #region Properties
         #endregion
         #region Constructors
-        public Input(PlayerObject player, UI myUI)
+        public Input(PlayerObject player, UI myUI, GameWorld myWorld)
         {
             this.player = player;
             this.myUI = myUI;
+            this.myWorld = myWorld;
+            newPlant = myWorld.Content.Load<Texture2D>("GameObjects/tilesetCrops1");
         }
         #endregion
         #region Methods
@@ -72,10 +78,13 @@ namespace Auroria
             //Plant a seed
             if (keyState.IsKeyDown(Keys.Space) && spaceDown != true)
             {
-                if (myUI.CurrentType == "Seed")
-                {
-                    //player.PlantSeed(myUI.currentType[1]);
-                }
+                int newX = (int)(myWorld.Player.WorldPos.X + 32) / 64;
+                int newY = (int)(myWorld.Player.WorldPos.Y + 50) / 64;
+                myWorld.AddObject(new Plant(newPlant, new int[]{0,0}, new Vector2(newX * 64,newY * 64)));
+                //if (myUI.CurrentType == "Seed")
+                //{
+                //    //player.PlantSeed(myUI.currentType[1]);
+                //}
                 spaceDown = true;
             }
             else if (keyState.IsKeyUp(Keys.Space) && spaceDown == true)

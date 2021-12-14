@@ -190,7 +190,7 @@ namespace Auroria
                     }
                     else if (colors[y * mapWidth + x] == yellowGreen)
                     {
-                        gameWorld.AddObject(new Plant(tileSet, plant, new Vector2(x * 64, y * 64)));
+                        gameWorld.AddObject(new Flora(tileSet, plant, new Vector2(x * 64, y * 64)));
                     }
                 }
             }
