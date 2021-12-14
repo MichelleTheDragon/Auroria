@@ -11,9 +11,9 @@ namespace Auroria
         private int plantAge = 0;
         private float agingTimer;
 
-        public Plant(Texture2D sprite, int[] tilePos, Vector2 worldPos) : base(sprite, tilePos, worldPos, false)
+        public Plant(Texture2D sprite, int[] tilePos, Vector2 worldPos, GameWorld myWorld, Texture2D myPlot) : base(sprite, tilePos, worldPos, false)
         {
-
+            myWorld.AddObject(new Plot(myPlot, new int[] {7, 0}, worldPos));
         }
 
         public override void Update(GameTime gameTime)

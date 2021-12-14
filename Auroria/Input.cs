@@ -16,6 +16,7 @@ namespace Auroria
         private GameWorld myWorld;
         private bool spaceDown;
         private Texture2D newPlant;
+        private Texture2D newPlot;
 
 
         #endregion
@@ -28,6 +29,7 @@ namespace Auroria
             this.myUI = myUI;
             this.myWorld = myWorld;
             newPlant = myWorld.Content.Load<Texture2D>("GameObjects/tilesetCrops1");
+            newPlot = myWorld.Content.Load<Texture2D>("GameObjects/tilesetNotDone");
         }
         #endregion
         #region Methods
@@ -80,7 +82,7 @@ namespace Auroria
             {
                 int newX = (int)(myWorld.Player.WorldPos.X + 32) / 64;
                 int newY = (int)(myWorld.Player.WorldPos.Y + 50) / 64;
-                myWorld.AddObject(new Plant(newPlant, new int[]{0,0}, new Vector2(newX * 64,newY * 64)));
+                myWorld.AddObject(new Plant(newPlant, new int[]{0,0}, new Vector2(newX * 64,newY * 64), myWorld, newPlot));
                 //if (myUI.CurrentType == "Seed")
                 //{
                 //    //player.PlantSeed(myUI.currentType[1]);

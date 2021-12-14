@@ -28,7 +28,15 @@ namespace Auroria
 
         private bool menuActive;
         private bool escDown;
-        private bool isFullscreen;
+        private bool isFullscreen; 
+        
+        //private int TargetWidth = 640;
+        //private int TargetHeight = 320;
+        //private Matrix cameraScale;
+        //private float cameraScaleX;
+        //private float cameraScaleY;
+        //public float[] CameraScale { get { return new float[] { TargetWidth, TargetHeight }; } } 
+
 
         private Vector2 worldOffset = Vector2.Zero;
         public Vector2 WorldOffset { get { return worldOffset; } set { worldOffset = value; } }
@@ -49,7 +57,10 @@ namespace Auroria
             _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 200; //sets the height of the window
             //_graphics.IsFullScreen = true; //set the window to fullscreen
             _graphics.ApplyChanges(); //applies the changes
-
+                                      // Somewhere in initialisation
+            //cameraScaleX = _graphics.PreferredBackBufferWidth / TargetWidth;
+            //cameraScaleY = _graphics.PreferredBackBufferHeight / TargetHeight;
+            //cameraScale = Matrix.CreateScale(new Vector3(cameraScaleX, cameraScaleY, 1));
             base.Initialize();
         }
 
@@ -109,7 +120,7 @@ namespace Auroria
         {
             GraphicsDevice.Clear(Color.Black);
 
-            _spriteBatch.Begin();
+            _spriteBatch.Begin();// SpriteSortMode.Immediate, null, null, null, null, null, cameraScale);
 
 
             foreach(GameObject myObject in myGameObjects)
