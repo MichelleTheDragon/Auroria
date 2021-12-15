@@ -72,7 +72,8 @@ namespace Auroria
             // TODO: use this.Content to load your game content here
             bgMusicOne = Content.Load<Song>("Sounds/Behold_a_Square_House");    //The background music
 
-            MediaPlayer.Play(bgMusicOne);   //Plays it
+            MediaPlayer.IsRepeating = true;     //So it loops
+            MediaPlayer.Play(bgMusicOne);       //Plays it
         }
 
 

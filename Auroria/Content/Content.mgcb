@@ -224,11 +224,233 @@
 /processorParam:TextureFormat=Color
 /build:GameObjects/tilesetNotDone.png
 
+#begin Sounds/3pops.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/3pops.ogg
+
 #begin Sounds/Behold_a_Square_House.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
 /build:Sounds/Behold_a_Square_House.mp3
+
+#begin Sounds/cooking_with_cover_01.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/cooking_with_cover_01.ogg
+
+#begin Sounds/cooking_without_cover_01.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/cooking_without_cover_01.ogg
+
+#begin Sounds/Item1A.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Item1A.wav
+
+#begin Sounds/Item1B.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Item1B.wav
+
+#begin Sounds/loop_bubbles_02.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/loop_bubbles_02.ogg
+
+#begin Sounds/loop_bubbles_1.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/loop_bubbles_1.ogg
+
+#begin Sounds/loop_rain.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/loop_rain.ogg
+
+#begin Sounds/loop_water_03.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/loop_water_03.ogg
+
+#begin Sounds/magical_6.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/magical_6.ogg
+
+#begin Sounds/Menu1A.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Menu1A.wav
+
+#begin Sounds/Menu1B.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/Menu1B.wav
+
+#begin Sounds/pop1.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/pop1.ogg
+
+#begin Sounds/pop2.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/pop2.ogg
+
+#begin Sounds/pop3.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/pop3.ogg
+
+#begin Sounds/positive 1.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/positive 1.mp3
+
+#begin Sounds/positive 2.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/positive 2.mp3
+
+#begin Sounds/rain_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/rain_2.wav
+
+#begin Sounds/rain_indoors_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/rain_indoors_2.wav
+
+#begin Sounds/slime_04.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/slime_04.ogg
+
+#begin Sounds/slime_13.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/slime_13.ogg
+
+#begin Sounds/splash_09.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/splash_09.ogg
+
+#begin Sounds/splash_10.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/splash_10.ogg
+
+#begin Sounds/splash_11.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/splash_11.ogg
+
+#begin Sounds/splash_13.ogg
+/importer:OggImporter
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/splash_13.ogg
+
+#begin Sounds/steam hisses - Marker #1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/steam hisses - Marker #1.wav
+
+#begin Sounds/stepdirt_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepdirt_1.wav;Sounds/TileDirt.wav
+
+#begin Sounds/stepdirt_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepdirt_2.wav;Sounds/HarvestPlant.wav
+
+#begin Sounds/stepsnow_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepsnow_1.wav;Sounds/GolemInteractSound.wav
+
+#begin Sounds/stepsnow_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepsnow_2.wav;Sounds/GolemTakeStuff.wav
+
+#begin Sounds/stepstone_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepstone_1.wav;Sounds/MineStoneOne.wav
+
+#begin Sounds/stepstone_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepstone_2.wav;Sounds/MineStoneTwo.wav
+
+#begin Sounds/stepwater_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepwater_1.wav;Sounds/TakeWater.wav
+
+#begin Sounds/stepwater_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepwater_2.wav;Sounds/WaterCrop.wav
+
+#begin Sounds/stepwood_1.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepwood_1.wav;Sounds/ChopWoodOne.wav
+
+#begin Sounds/stepwood_2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:Sounds/stepwood_2.wav;Sounds/ChopWoodTwo.wav
+
+#begin Sounds/VistulaShort.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:Sounds/VistulaShort.mp3
 
 #begin TestMap.png
 /importer:TextureImporter
