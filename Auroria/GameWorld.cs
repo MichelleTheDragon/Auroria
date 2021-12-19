@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Auroria.Source.Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ namespace Auroria
     public class GameWorld : Game
     {
         private GraphicsDeviceManager _graphics;
-        private SpriteBatch _spriteBatch;
+        public SpriteBatch _spriteBatch;
 
         private Color backgroundColour = Color.CornflowerBlue;
 
@@ -66,7 +67,8 @@ namespace Auroria
 
         protected override void LoadContent()
         {
-                        
+            Globals.content = this.Content;
+            Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
@@ -119,6 +121,12 @@ namespace Auroria
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
+
+            Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
+
+
+
+            Globals.spriteBatch.End();
 
             _spriteBatch.Begin();// SpriteSortMode.Immediate, null, null, null, null, null, cameraScale);
 
