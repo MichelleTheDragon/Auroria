@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Auroria.Output;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,14 @@ namespace Auroria
     {
         #region Fields
 
-        private string name;
-        public string Name { get { return name; } }
-
-        private string dialog;
-        public string Dialog { get { return dialog; } }
+        public string name;
+        
         #endregion
 
         #region Constructor
         public NPC(Texture2D sprite, int[] tilePos, Vector2 worldPos, bool isSolid) : base(sprite, tilePos, worldPos, isSolid)
         {
+            
         }
         #endregion
 

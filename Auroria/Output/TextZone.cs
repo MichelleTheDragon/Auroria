@@ -13,7 +13,7 @@ using Auroria.Source.Engine;
 
 namespace Auroria.Output
 {
-    class TextBox
+    public class TextZone
     {
         #region Fields
         public int maxWidth, lineHeight;
@@ -27,7 +27,7 @@ namespace Auroria.Output
         #endregion
 
         #region Constructor
-        public TextBox(Vector2 POS, string STR, int MAXWIDTH, int LINEHEIGHT, string FONT, Color FONTCOLOR)
+        public TextZone(Vector2 POS, string STR, int MAXWIDTH, int LINEHEIGHT, string FONT, Color FONTCOLOR)
         {
             pos = POS;
             str = STR;
@@ -35,6 +35,8 @@ namespace Auroria.Output
             maxWidth = MAXWIDTH;
             lineHeight = LINEHEIGHT;
             color = FONTCOLOR;
+
+            font = Globals.content.Load<SpriteFont>(FONT);
 
             if (str != "")
             {

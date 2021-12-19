@@ -122,14 +122,9 @@ namespace Auroria
         {
             GraphicsDevice.Clear(Color.Black);
 
-            Globals.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
 
-
-
-            Globals.spriteBatch.End();
 
             _spriteBatch.Begin();// SpriteSortMode.Immediate, null, null, null, null, null, cameraScale);
-
 
             foreach(GameObject myObject in myGameObjects)
             {

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Auroria.Output;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,8 @@ namespace Auroria
 
         private GameWorld myWorld;
 
+        public TextZone textZone;
+
         #endregion
         #region Properties
         #endregion
@@ -27,6 +30,8 @@ namespace Auroria
         {
             this.myWorld = myWorld;
             this.sprites = sprites;
+
+            textZone = new TextZone(new Vector2(0, 0), "Hello World!", (int)(dims.X * .9f), 22, "Fonts\\Font.xnb", Color.Black);
         }
 
         #endregion
