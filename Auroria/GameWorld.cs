@@ -11,6 +11,8 @@ namespace Auroria
         private GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
 
+        public Menu2d textBox;
+
         private Color backgroundColour = Color.CornflowerBlue;
 
         private List<Component> gameComponents = new List<Component>();
@@ -48,6 +50,8 @@ namespace Auroria
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+
+            textBox = new Menu2d(new Vector2(Globals.screenWidth/2, Globals.screenHeight - 200), new Vector2(400, 200));
         }
 
         protected override void Initialize()
@@ -110,8 +114,14 @@ namespace Auroria
                     menuComponent.Update(gameTime);
                 }
             }
+            textBox.Update();
+            if (Globals.keyboard.GetSinglePress("C"))
+            {
+                textBox.Active = true;
+            }
             myUI.Update(gameTime);
             myInput.Update(gameTime);
+            
 
             // TODO: Add your update logic here
 
@@ -145,6 +155,7 @@ namespace Auroria
                 }
             }
 
+            textBox.Draw();
 
             _spriteBatch.End();
 
