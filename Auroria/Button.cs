@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Text;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.Xna.Framework.Content;
 
 namespace Auroria
 {
-    class Button : Component
+    public class Button : Component
     {
         #region Fields
 
@@ -22,6 +23,7 @@ namespace Auroria
         private bool isMenuButton;
 
         private MouseState previousMouseState;
+
 
         private Texture2D texture;
 
@@ -51,7 +53,14 @@ namespace Auroria
         #endregion
         #region Constructors
 
-        public Button(Texture2D texture,SpriteFont font,bool isMenuButton)
+        public Button(Texture2D texture, bool isMenuButton)
+        {
+            this.texture = texture;
+
+            this.isMenuButton = isMenuButton;
+        }
+
+        public Button(Texture2D texture,SpriteFont font, bool isMenuButton)
         {
             this.texture = texture;
             
@@ -71,9 +80,7 @@ namespace Auroria
         #region Methods
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            var colour = Color.White;
-
-                
+            var colour = Color.White;     
 
             if (isMouseHovering && isMenuButton)
                 colour = Color.LightGray;

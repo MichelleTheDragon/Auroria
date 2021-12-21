@@ -2,23 +2,22 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
-
+using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
 using System.Threading;
 using System.Text;
-using Auroria.Source.Engine;
 
 namespace Auroria.Output
 {
-    public class TextZone
+    public class TextZone : Component
     {
         #region Fields
         public int maxWidth, lineHeight;
         private string str;
-        public Vector2 pos, dims;
+        public Vector2 pos, dims, OFFSET;
         public Color color;
 
         public SpriteFont font;
@@ -27,16 +26,15 @@ namespace Auroria.Output
         #endregion
 
         #region Constructor
-        public TextZone(Vector2 POS, string STR, int MAXWIDTH, int LINEHEIGHT, string FONT, Color FONTCOLOR)
+        public TextZone(Vector2 POS, string STR, int MAXWIDTH, int LINEHEIGHT, SpriteFont FONT, Color FONTCOLOR)
         {
             pos = POS;
             str = STR;
+            font = FONT;
 
             maxWidth = MAXWIDTH;
             lineHeight = LINEHEIGHT;
             color = FONTCOLOR;
-
-            font = Globals.content.Load<SpriteFont>(FONT);
 
             if (str != "")
             {
@@ -114,12 +112,21 @@ namespace Auroria.Output
             dims = new Vector2(LARGESTWITDH, lineHeight * lines.Count);
         }
 
-        public virtual void Draw(Vector2 OFFSET)
+        public void LoadContent(ContentManager content)
+        {
+            font = content.Load<SpriteFont>("Fonts/Font");
+        }
+        public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
             for (int i = 0; i < lines.Count; i++)
             {
-                Globals.spriteBatch.DrawString(font, lines[i], OFFSET + new Vector2(pos.X, pos.Y + (lineHeight * i)), color);
+                spriteBatch.DrawString(font, lines[i], OFFSET + new Vector2(pos.X, pos.Y + (lineHeight * i)), color);
             }
+        }
+
+        public override void Update(GameTime gametime)
+        {
+
         }
         #endregion
     }

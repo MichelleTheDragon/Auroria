@@ -1,5 +1,4 @@
-﻿using Auroria.Source.Engine;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
@@ -10,8 +9,6 @@ namespace Auroria
     {
         private GraphicsDeviceManager _graphics;
         public SpriteBatch _spriteBatch;
-
-        public Menu2d textBox;
 
         private Color backgroundColour = Color.CornflowerBlue;
 
@@ -28,6 +25,8 @@ namespace Auroria
         private WorldAssembler myWorld;
         private UI myUI;
         private Input myInput;
+
+        private TextContainer textBox;
 
         private bool menuActive;
         private bool escDown;
@@ -50,8 +49,6 @@ namespace Auroria
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
-
-            textBox = new Menu2d(new Vector2(Globals.screenWidth/2, Globals.screenHeight - 200), new Vector2(400, 200));
         }
 
         protected override void Initialize()
@@ -71,14 +68,15 @@ namespace Auroria
 
         protected override void LoadContent()
         {
-            Globals.content = this.Content;
-            Globals.spriteBatch = new SpriteBatch(GraphicsDevice);
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
             myWorld = new WorldAssembler();
             myUI = new UI(this);
 
+            textBox = new TextContainer(new Vector2(GraphicsDevice.DisplayMode.Width/2, GraphicsDevice.DisplayMode.Height -200), new Vector2(400, 200));
+
+            textBox.LoadContent(Content, _graphics);
             myUI.LoadContent(Content, _graphics);
             myWorld.LoadContent(Content, this, _graphics);
             myInput = new Input(player, myUI, this);
@@ -114,14 +112,15 @@ namespace Auroria
                     menuComponent.Update(gameTime);
                 }
             }
-            textBox.Update();
-            if (Globals.keyboard.GetSinglePress("C"))
+            myUI.Update(gameTime);
+            myInput.Update(gameTime);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.C) && textBox.Active != true)
             {
                 textBox.Active = true;
             }
-            myUI.Update(gameTime);
-            myInput.Update(gameTime);
-            
+
+            textBox.Update(gameTime);
 
             // TODO: Add your update logic here
 
@@ -131,8 +130,6 @@ namespace Auroria
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.Black);
-
-
 
             _spriteBatch.Begin();// SpriteSortMode.Immediate, null, null, null, null, null, cameraScale);
 
@@ -155,7 +152,8 @@ namespace Auroria
                 }
             }
 
-            textBox.Draw();
+            textBox.Draw(gameTime, _spriteBatch);
+
 
             _spriteBatch.End();
 
