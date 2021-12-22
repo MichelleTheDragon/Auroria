@@ -76,7 +76,7 @@ namespace Auroria
 
             textBox = new TextContainer(new Vector2(GraphicsDevice.DisplayMode.Width/2, GraphicsDevice.DisplayMode.Height -200), new Vector2(400, 200));
 
-            textBox.LoadContent(Content, _graphics);
+            textBox.LoadContent(Content);
             myUI.LoadContent(Content, _graphics);
             myWorld.LoadContent(Content, this, _graphics);
             myInput = new Input(player, myUI, this);
