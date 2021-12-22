@@ -47,12 +47,12 @@ namespace Auroria
             this.sprite = sprite;
             this.worldPos = worldPos;
             this.tilePos = tilePos;
-            if (tilePos != null)
+            if (tilePos != null) //if the sprite is a tilesheet
             {
                 rect = new Rectangle(tilePos[0] * 64, tilePos[1] * 64, 64, 64);
                 origin = new Vector2(32, 32);
             }
-            else
+            else 
             {
                 rect = new Rectangle(0, 0, sprite.Width, sprite.Height);
                 origin = new Vector2(sprite.Width / 2, sprite.Height / 2);
@@ -66,6 +66,11 @@ namespace Auroria
 
         #region Collision
 
+        /// <summary>
+        ///     Returns true if GameObject is blocking on the right
+        /// </summary>
+        /// <param name="myGameObject"></param>
+        /// <returns></returns>
         protected bool IsTouchingLeft(GameObject myGameObject)
         {
             return  this.worldPos.X + this.rect.Right - 10 + this.velocity.X > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
@@ -73,6 +78,11 @@ namespace Auroria
                     this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
                     this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
         }
+        /// <summary>
+        ///     Returns true if GameObject is blocking on the left
+        /// </summary>
+        /// <param name="myGameObject"></param>
+        /// <returns></returns>
         protected bool IsTouchingRight(GameObject myGameObject)
         {
             return this.worldPos.X + this.rect.Left + 10 + this.velocity.X < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
@@ -80,13 +90,23 @@ namespace Auroria
                    this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
                    this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
         }
+        /// <summary>
+        ///     Returns true if GameObject is blocking bellow
+        /// </summary>
+        /// <param name="myGameObject"></param>
+        /// <returns></returns>
         protected bool IsTouchingTop(GameObject myGameObject)
         {
             return this.worldPos.Y + this.rect.Bottom - 10 + this.velocity.Y > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
                    this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
                    this.worldPos.X + this.rect.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
-                   this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;  
+                   this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;
         }
+        /// <summary>
+        ///     Returns true if GameObject is blocking above
+        /// </summary>
+        /// <param name="myGameObject"></param>
+        /// <returns></returns>
         protected bool IsTouchingBottom(GameObject myGameObject)
         {
             return this.worldPos.Y + this.rect.Top + 30 + this.velocity.Y < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
@@ -107,11 +127,20 @@ namespace Auroria
 
         }
 
+        /// <summary>
+        ///     Call to update the rectangle, if it changes tile at runtime
+        /// </summary>
+        /// <param name="height"></param>
         protected void ChangeSpriteTile(int height)
         {
             rect = new Rectangle(tilePos[0] * 64, tilePos[1] * height * 64, 64, 64);
         }
 
+        /// <summary>
+        ///     Draw the GameObject
+        /// </summary>
+        /// <param name="spriteBatch"></param>
+        /// <param name="worldOffset"></param>
         public void Draw(SpriteBatch spriteBatch, Vector2 worldOffset)
         {
             if (sprites == null) {

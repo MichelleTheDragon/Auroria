@@ -16,7 +16,7 @@ namespace Auroria
         private int[] rock = new int[] { 5, 0 };
         private int[] tree = new int[] { 4, 0 };
         private int[] grass = new int[] { 1, 1 };
-        private int[] plant = new int[] { 1, 1 };
+        private int[] plant = new int[] { 3, 0 };
         private int[] water = new int[] { 3, 2 };
         private int[] grassEdgeTopLeft = new int[] { 2, 2 };
         private int[] grassEdgeTopRight = new int[] { 0, 2 };
@@ -65,7 +65,7 @@ namespace Auroria
             {
                 for (int x = 0; x < mapWidth; x++)
                 {
-                    if (colors[y * mapWidth + x] == blue)
+                    if (colors[y * mapWidth + x] == blue) //If the pixel is blue, place Water tile
                     {
                         int solidGround = 0;
                         if (colors[(y - 1) * mapWidth + x] != blue)
@@ -175,31 +175,32 @@ namespace Auroria
                             }
                         }
                     }
-                    else
+                    else //if it is not a water tile, then it is a grass tile
                     {
                         gameWorld.AddObject(new Grass(tileSet, grass, new Vector2(x * 64, y * 64)));
                     }
 
-                    if (colors[y * mapWidth + x] == black)
+                    if (colors[y * mapWidth + x] == black) //if the pixel is black, place a rock object
                     {
                         gameWorld.AddObject(new Rock(tileSet, rock, new Vector2(x * 64, y * 64)));
                     }
-                    else if (colors[y * mapWidth + x] == green)
+                    else if (colors[y * mapWidth + x] == green) //if the pixel is green, place a tree object
                     {
                         gameWorld.AddObject(new Tree(tileSet, tree, new Vector2(x * 64, y * 64)));
                     }
-                    else if (colors[y * mapWidth + x] == yellowGreen)
+                    else if (colors[y * mapWidth + x] == yellowGreen) //if the pixel is yellowGreen, place a flower (currently different grass tile)
                     {
                         gameWorld.AddObject(new Flora(tileSet, plant, new Vector2(x * 64, y * 64)));
                     }
                 }
             }
-            Texture2D[] sprites = new Texture2D[4];
-            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front_64");
+            Texture2D[] sprites = new Texture2D[4]; //player character sprite array
+            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front_64"); 
             sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back_64");
             sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left_64");
             sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right_64");
-            gameWorld.Player = new PlayerObject(sprites, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld);
+            //Create the player character
+            gameWorld.Player = new PlayerObject(sprites, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld); 
 
             //gameWorld.AddObject(new Grass(tileSet, grass, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 64 * 2, graphics.GraphicsDevice.Viewport.Height / 2)));
             //gameWorld.AddObject(new Rock(tileSet, rock, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - 64 * 2, graphics.GraphicsDevice.Viewport.Height / 2)));

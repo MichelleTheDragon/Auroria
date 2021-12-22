@@ -127,10 +127,20 @@ namespace Auroria
 
         }
 
+        /// <summary>
+        ///     Call the fullscreen toggle in the GameWorld
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ToggleFullscreen(object sender, System.EventArgs e)
         {
             myWorld.ToggleFullscreen();
         }
+        /// <summary>
+        ///     Call the Exit method in the Game class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ExitButton_Click(object sender, System.EventArgs e)
         {
             myWorld.Exit();
