@@ -107,9 +107,9 @@ namespace Auroria
 
         }
 
-        protected void ChangeSpriteTile()
+        protected void ChangeSpriteTile(int height)
         {
-            rect = new Rectangle(tilePos[0] * 64, tilePos[1] * 64, 64, 64);
+            rect = new Rectangle(tilePos[0] * 64, tilePos[1] * height * 64, 64, 64);
         }
 
         public void Draw(SpriteBatch spriteBatch, Vector2 worldOffset)

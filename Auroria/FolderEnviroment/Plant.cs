@@ -14,6 +14,11 @@ namespace Auroria
         public Plant(Texture2D sprite, int[] tilePos, Vector2 worldPos, GameWorld myWorld, Texture2D myPlot) : base(sprite, tilePos, worldPos, false)
         {
             myWorld.AddObject(new Plot(myPlot, new int[] {7, 0}, worldPos));
+            if (tilePos[1] >= 2)
+            {
+                tilePos[1] = (tilePos[1] - 2) * 2 + 1;
+                ChangeSpriteTile(2);
+            }
         }
 
         public override void Update(GameTime gameTime)
@@ -23,7 +28,7 @@ namespace Auroria
             {
                 plantAge++;
                 tilePos = new int[] {plantAge, tilePos[1]};
-                ChangeSpriteTile();
+                ChangeSpriteTile(1);
                 agingTimer = 0.0f;
             }
         }

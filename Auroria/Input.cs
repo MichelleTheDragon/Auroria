@@ -82,7 +82,7 @@ namespace Auroria
             {
                 int newX = (int)(myWorld.Player.WorldPos.X + 32) / 64;
                 int newY = (int)(myWorld.Player.WorldPos.Y + 50) / 64;
-                myWorld.AddObject(new Plant(newPlant, new int[]{0,0}, new Vector2(newX * 64,newY * 64), myWorld, newPlot));
+                myWorld.AddObject(new Plant(newPlant, new int[]{0,4}, new Vector2(newX * 64,newY * 64), myWorld, newPlot));
                 //if (myUI.CurrentType == "Seed")
                 //{
                 //    //player.PlantSeed(myUI.currentType[1]);
