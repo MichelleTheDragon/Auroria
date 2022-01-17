@@ -151,9 +151,10 @@ namespace Auroria
                     menuComponent.Draw(gameTime, _spriteBatch);
                 }
             }
-
-            textBox.Draw(gameTime, _spriteBatch);
-
+            if (textBox.Active == true)
+            {
+                textBox.Draw(gameTime, _spriteBatch);
+            }
 
             _spriteBatch.End();
 
