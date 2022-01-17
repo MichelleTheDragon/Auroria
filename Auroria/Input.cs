@@ -42,6 +42,11 @@ namespace Auroria
             OtherHotkeys(gameTime, keyState);
         }
 
+        /// <summary>
+        ///     Runs all movement of the player character
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="keyState"></param>
         private void Movement(GameTime gameTime, KeyboardState keyState)
         {
 
@@ -74,7 +79,11 @@ namespace Auroria
         {
 
         }
-
+        /// <summary>
+        ///     All other hotkey inputs
+        /// </summary>
+        /// <param name="gameTime"></param>
+        /// <param name="keyState"></param>
         private void OtherHotkeys(GameTime gameTime, KeyboardState keyState)
         {
             //Plant a seed
@@ -82,7 +91,7 @@ namespace Auroria
             {
                 int newX = (int)(myWorld.Player.WorldPos.X + 32) / 64;
                 int newY = (int)(myWorld.Player.WorldPos.Y + 50) / 64;
-                myWorld.AddObject(new Plant(newPlant, new int[]{0,4}, new Vector2(newX * 64,newY * 64), myWorld, newPlot));
+                myWorld.AddObject(new Plant(newPlant, new int[]{0,4}, new Vector2(newX * 64,newY * 64), myWorld, newPlot)); //spawn under player position
                 //if (myUI.CurrentType == "Seed")
                 //{
                 //    //player.PlantSeed(myUI.currentType[1]);

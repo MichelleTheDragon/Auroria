@@ -23,7 +23,12 @@ namespace Auroria
         #region Properties
         #endregion
         #region Constructors
-
+        /// <summary>
+        ///     When creating a player object input an array of sprites, a spawn position, and send the GameWorld instance ("this")
+        /// </summary>
+        /// <param name="sprites"></param>
+        /// <param name="worldPos"></param>
+        /// <param name="myWorld"></param>
         public PlayerObject(Texture2D[] sprites, Vector2 worldPos, GameWorld myWorld) : base(sprites[0], null, worldPos, false)
         {
             this.myWorld = myWorld;
@@ -38,58 +43,46 @@ namespace Auroria
         }
 
 
-
+        /// <summary>
+        ///     Call to move the player character
+        /// </summary>
+        /// <param name="moveDir"></param>
+        /// <param name="gameTime"></param>
         public void Move(int moveDir, GameTime gameTime)
         {
-            switch (moveDir)
+            switch (moveDir) //Move: 1 = Up, 2 = Down, 3 = Left, 4 = right 
             {
-                case 1:
+                case 1: 
                     this.velocity.Y = -(float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     if (currentSprite != 1)
                     {
                         currentSprite = 1;
-                        //rect = new Rectangle(sprites[1].Width / 2, sprites[1].Height / 2, (int)(sprites[1].Width * scale), (int)(sprites[1].Height * scale));
-                        //origin = new Vector2(sprites[1].Width / 2, sprites[1].Height / 2);
                     }
-                    //myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X, myWorld.WorldOffset.Y + (float)gameTime.ElapsedGameTime.TotalSeconds * speed);
-                    //worldPos.Y -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
                 case 2:
                     this.velocity.Y = (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     if (currentSprite != 0)
                     {
                         currentSprite = 0;
-                        //rect = new Rectangle(sprites[0].Width / 2, sprites[0].Height / 2, (int)(sprites[0].Width * scale), (int)(sprites[0].Height * scale));
-                        //origin = new Vector2(sprites[0].Width / 2, sprites[0].Height / 2);
                     }
-                    //myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X, myWorld.WorldOffset.Y - (float)gameTime.ElapsedGameTime.TotalSeconds * speed);
-                    //worldPos.Y += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
                 case 3:
                     this.velocity.X = -(float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     if (currentSprite != 2)
                     {
                         currentSprite = 2;
-                        //rect = new Rectangle(0,0, (int)(sprites[2].Width * scale), (int)(sprites[2].Height * scale));
-                        //origin = new Vector2(sprites[2].Width / 2, sprites[2].Height / 2);
                     }
-                    //myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X + (float)gameTime.ElapsedGameTime.TotalSeconds * speed, myWorld.WorldOffset.Y);
-                    //worldPos.X -= (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
                 case 4:
                     this.velocity.X = (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     if (currentSprite != 3)
                     {
                         currentSprite = 3;
-                        //rect = new Rectangle(sprites[3].Width / 2 - (int)(sprites[3].Width * scale)/2, sprites[3].Height / 2 - (int)(sprites[3].Height * scale) / 2, (int)(sprites[3].Width * scale), (int)(sprites[3].Height * scale));
-                        //origin = new Vector2(sprites[3].Width / 2, sprites[3].Height / 2);
                     }
-                    //myWorld.WorldOffset = new Vector2(myWorld.WorldOffset.X - (float)gameTime.ElapsedGameTime.TotalSeconds * speed, myWorld.WorldOffset.Y);
-                    //worldPos.X += (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
                     break;
             }
 
-            foreach (GameObject myGameObject in myWorld.MyGameObjects)
+            foreach (GameObject myGameObject in myWorld.MyGameObjects) //check if colliding with any solid objects
             {
                 if (myGameObject.IsSolid == true)
                 {
@@ -104,10 +97,10 @@ namespace Auroria
                     }
                 }
             }
-            worldPos += this.velocity;
-            myWorld.WorldOffset -= this.velocity;
+            worldPos += this.velocity; //move the player character
+            myWorld.WorldOffset -= this.velocity; //move the entire world opposite of the movement, centering the player
 
-            this.velocity = Vector2.Zero;
+            this.velocity = Vector2.Zero; //reset the variable 
         }
 
         #endregion
