@@ -24,8 +24,9 @@ namespace Auroria
             myWorld.AddObject(new Plot(myPlot, new int[] {7, 0}, worldPos)); //create a plot object under the plant
             if (tilePos[1] >= 2) //skips past tiles on the Y axis that isn't the bottom one
             {
-                tilePos[1] = (tilePos[1] - 2) * 2 + 1;
-                ChangeSpriteTile(2);
+                tilePos[1] = (tilePos[1] - 1) * 2 + 1;
+                tileHeight = 2;
+                ChangeSpriteTile();
             }
         }
 
@@ -36,7 +37,7 @@ namespace Auroria
             {
                 plantAge++;
                 tilePos = new int[] {plantAge, tilePos[1]};
-                ChangeSpriteTile(1);
+                ChangeSpriteTile();
                 agingTimer = 0.0f;
             }
         }

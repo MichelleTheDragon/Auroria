@@ -52,6 +52,7 @@ namespace Auroria
 
             int mapWidth = map.Width;
             int mapHeight = map.Height;
+            gameWorld.OccupiedTiles = new bool[mapWidth, mapHeight];
 
             Color[] colors = new Color[mapWidth * mapHeight]; //creates a color array for all pixels in the map
             map.GetData(colors); //sets those colors in the array
@@ -174,6 +175,7 @@ namespace Auroria
                                 }
                             }
                         }
+                        gameWorld.OccupiedTiles[x, y] = true;
                     }
                     else //if it is not a water tile, then it is a grass tile
                     {
@@ -183,10 +185,12 @@ namespace Auroria
                     if (colors[y * mapWidth + x] == black) //if the pixel is black, place a rock object
                     {
                         gameWorld.AddObject(new Rock(tileSet, rock, new Vector2(x * 64, y * 64)));
+                        gameWorld.OccupiedTiles[x, y] = true;
                     }
                     else if (colors[y * mapWidth + x] == green) //if the pixel is green, place a tree object
                     {
                         gameWorld.AddObject(new Tree(tileSet, tree, new Vector2(x * 64, y * 64)));
+                        gameWorld.OccupiedTiles[x, y] = true;
                     }
                     else if (colors[y * mapWidth + x] == yellowGreen) //if the pixel is yellowGreen, place a flower (currently different grass tile)
                     {

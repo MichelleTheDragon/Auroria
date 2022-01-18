@@ -11,6 +11,9 @@ namespace Auroria
     {
         #region Fields
         private GameWorld myWorld;
+        private int currentToolbarPicked = 1;
+        public int CurrentToolbarPicked { get { return currentToolbarPicked; } set { currentToolbarPicked = value; } }
+        private Button[] toolbarButtons = new Button[8];
         private string currentType;
         private int currentSeed;
         public string CurrentType { get { return currentType; } }
@@ -55,44 +58,57 @@ namespace Auroria
                 Text = "",
             };
 
-            var toolbar1 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar1 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
-                Position = new Vector2(graphics.GraphicsDevice.Viewport.Width /2 - 224, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - 224, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 1,
                 Text = "",
             };
-            var toolbar2 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar2 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - 160, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 2,
                 Text = "",
             };
-            var toolbar3 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar3 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - 96, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 3,
                 Text = "",
             };
-            var toolbar4 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar4 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - 32, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 4,
                 Text = "",
             };
-            var toolbar5 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar5 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 32, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 5,
                 Text = "",
             };
-            var toolbar6 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar6 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 96, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 6,
                 Text = "",
             };
-            var toolbar7 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar7 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 160, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 7,
                 Text = "",
             };
-            var toolbar8 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), false)
+            var toolbar8 = new Button(content.Load<Texture2D>("Controls/ToolbarSlot"), content.Load<SpriteFont>("Fonts/Font"), true)
             {
                 Position = new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 224, (graphics.GraphicsDevice.Viewport.Height) - 100),
+                ToolbarNumber = 8,
+                Text = "",
+            };
+            var toolbarBorder = new Button(content.Load<Texture2D>("GameObjects/tollbarBorderSummer2"), content.Load<SpriteFont>("Fonts/Font"), false)
+            {
+                Position = new Vector2(toolbarMain.Position.X, toolbarMain.Position.Y),
                 Text = "",
             };
 
@@ -111,8 +127,24 @@ namespace Auroria
             toolbar.Add(toolbar6);
             toolbar.Add(toolbar7);
             toolbar.Add(toolbar8);
+            toolbar.Add(toolbarBorder);
+            toolbarButtons[0] = toolbar1;
+            toolbarButtons[1] = toolbar2;
+            toolbarButtons[2] = toolbar3;
+            toolbarButtons[3] = toolbar4;
+            toolbarButtons[4] = toolbar5;
+            toolbarButtons[5] = toolbar6;
+            toolbarButtons[6] = toolbar7;
+            toolbarButtons[7] = toolbar8;
+            foreach(Button toolbarButton in toolbarButtons)
+            {
+                toolbarButton.MyUI = this;
+                toolbarButton.Click += SelectedToolbar;
+            }
             myWorld.MenuComponents = newMenu;
             myWorld.GameComponents = toolbar;
+
+            SelectedToolbar2();
         }
 
         public void Update(GameTime gameTime)
@@ -125,6 +157,19 @@ namespace Auroria
 
             // TODO: Add your drawing code here
 
+        }
+
+        public void SelectedToolbar2()
+        {
+            foreach (Button toolbarButton in toolbarButtons)
+            {
+                toolbarButton.IsSeleceted = false;
+            }
+            toolbarButtons[currentToolbarPicked - 1].IsSeleceted = true;
+        }
+        private void SelectedToolbar(object sender, System.EventArgs e)
+        {
+            SelectedToolbar2();
         }
 
         /// <summary>

@@ -116,18 +116,6 @@
 /processorParam:TextureFormat=Color
 /build:GameObjects/GOLEM_back.png
 
-#begin GameObjects/GOLEM_back.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_back.png
-
 #begin GameObjects/GOLEM_back_64.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -139,30 +127,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GameObjects/GOLEM_back_64.png
-
-#begin GameObjects/GOLEM_back_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_back_64.png
-
-#begin GameObjects/GOLEM_front.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_front.png
 
 #begin GameObjects/GOLEM_front.png
 /importer:TextureImporter
@@ -188,30 +152,6 @@
 /processorParam:TextureFormat=Color
 /build:GameObjects/GOLEM_front_64.png
 
-#begin GameObjects/GOLEM_front_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_front_64.png
-
-#begin GameObjects/GOLEM_left.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_left.png
-
 #begin GameObjects/GOLEM_left.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -236,18 +176,6 @@
 /processorParam:TextureFormat=Color
 /build:GameObjects/GOLEM_left_64.png
 
-#begin GameObjects/GOLEM_left_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_left_64.png
-
 #begin GameObjects/GOLEM_right.png
 /importer:TextureImporter
 /processor:TextureProcessor
@@ -259,30 +187,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:GameObjects/GOLEM_right.png
-
-#begin GameObjects/GOLEM_right.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_right.png
-
-#begin GameObjects/GOLEM_right_64.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:GameObjects/GOLEM_right_64.png
 
 #begin GameObjects/GOLEM_right_64.png
 /importer:TextureImporter
@@ -320,7 +224,7 @@
 /processorParam:TextureFormat=Color
 /build:GameObjects/tilesetNotDone.png
 
-#begin GameObjects/tilesetNotDone.png
+#begin GameObjects/tollbarBorderSummer.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -330,7 +234,19 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:GameObjects/tilesetNotDone.png
+/build:GameObjects/tollbarBorderSummer.png
+
+#begin GameObjects/tollbarBorderSummer2.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GameObjects/tollbarBorderSummer2.png
 
 #begin TestMap.png
 /importer:TextureImporter

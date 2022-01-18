@@ -38,6 +38,14 @@ namespace Auroria
 
         public Vector2 Position { get; set; }
 
+        private UI myUI;
+        public UI MyUI { set { myUI = value; } }
+        private Color colour = Color.White;
+        private bool isSelected;
+        public bool IsSeleceted { set { isSelected = value; } }
+        private int toolbarNumber;
+        public int ToolbarNumber { get { return toolbarNumber; } set { toolbarNumber = value; } }
+
         public Rectangle Rectangle
         {
             get
@@ -51,14 +59,11 @@ namespace Auroria
         #endregion
         #region Constructors
 
-        public Button(Texture2D texture,SpriteFont font,bool isMenuButton)
+        public Button(Texture2D texture, SpriteFont font, bool isMenuButton)
         {
             this.texture = texture;
-            
             this.font = font;
-
             this.isMenuButton = isMenuButton;
-
             PenColour = Color.Black;
         }
 
@@ -71,12 +76,19 @@ namespace Auroria
         #region Methods
         public override void Draw(GameTime gameTime, SpriteBatch spriteBatch)
         {
-            var colour = Color.White;
-
-                
-
-            if (isMouseHovering && isMenuButton)
+            if (isSelected == true)
+            {
+                colour = Color.DarkBlue;
+            } else if (isMouseHovering && isMenuButton && colour == Color.White)
+            {
                 colour = Color.LightGray;
+            } else if (isMouseHovering != true && colour != Color.White)
+            {
+                colour = Color.White;
+            } else if (isSelected != true && colour == Color.DarkBlue)
+            {
+                colour = Color.White;
+            }
 
             spriteBatch.Draw(texture, Rectangle, colour);
 
@@ -105,6 +117,10 @@ namespace Auroria
 
                 if(currentMouseState.LeftButton == ButtonState.Released && previousMouseState.LeftButton == ButtonState.Pressed)
                 {
+                    if(toolbarNumber > 0)
+                    {
+                        myUI.CurrentToolbarPicked = toolbarNumber;
+                    }
                     Click?.Invoke(this, new EventArgs()); 
                 }
             }

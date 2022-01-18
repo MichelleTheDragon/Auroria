@@ -15,6 +15,7 @@ namespace Auroria
         protected Texture2D sprite;
         protected Texture2D[] sprites;
         protected int currentSprite = 0;
+        protected int tileHeight = 1;
 
         protected float scale = 1.0f;
         protected float layer = 1.0f;
@@ -131,9 +132,13 @@ namespace Auroria
         ///     Call to update the rectangle, if it changes tile at runtime
         /// </summary>
         /// <param name="height"></param>
-        protected void ChangeSpriteTile(int height)
+        protected void ChangeSpriteTile()
         {
-            rect = new Rectangle(tilePos[0] * 64, tilePos[1] * height * 64, 64, 64);
+            rect = new Rectangle(tilePos[0] * 64, (tilePos[1] - (tileHeight - 1)) * 64, 64, 64 * tileHeight);
+            if (tileHeight > 1)
+            {
+                origin = new Vector2(origin.X, (tileHeight - 1) * 64 + (tileHeight - 1) * 32);
+            }
         }
 
         /// <summary>
