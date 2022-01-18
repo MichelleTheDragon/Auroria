@@ -8,7 +8,7 @@ namespace Auroria
     public class GameWorld : Game
     {
         private GraphicsDeviceManager _graphics;
-        public SpriteBatch _spriteBatch;
+        private SpriteBatch _spriteBatch;
 
         private Color backgroundColour = Color.CornflowerBlue;
 
@@ -26,12 +26,10 @@ namespace Auroria
         private UI myUI;
         private Input myInput;
 
-        private TextContainer textBox;
-
         private bool menuActive;
         private bool escDown;
-        private bool isFullscreen; 
-        
+        private bool isFullscreen;
+
         //private int TargetWidth = 640;
         //private int TargetHeight = 320;
         //private Matrix cameraScale;
@@ -59,7 +57,7 @@ namespace Auroria
             _graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height - 200; //sets the height of the window
             //_graphics.IsFullScreen = true; //set the window to fullscreen
             _graphics.ApplyChanges(); //applies the changes
-                                      // Somewhere in initialisation
+
             //cameraScaleX = _graphics.PreferredBackBufferWidth / TargetWidth;
             //cameraScaleY = _graphics.PreferredBackBufferHeight / TargetHeight;
             //cameraScale = Matrix.CreateScale(new Vector3(cameraScaleX, cameraScaleY, 1));
@@ -68,15 +66,13 @@ namespace Auroria
 
         protected override void LoadContent()
         {
+
             _spriteBatch = new SpriteBatch(GraphicsDevice);
 
 
             myWorld = new WorldAssembler();
             myUI = new UI(this);
 
-            textBox = new TextContainer(new Vector2(GraphicsDevice.DisplayMode.Width/2, GraphicsDevice.DisplayMode.Height -200), new Vector2(400, 200));
-
-            textBox.LoadContent(Content);
             myUI.LoadContent(Content, _graphics);
             myWorld.LoadContent(Content, this, _graphics);
             myInput = new Input(player, myUI, this);
@@ -87,40 +83,34 @@ namespace Auroria
         protected override void Update(GameTime gameTime)
         {
             //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed ||
-            if(Keyboard.GetState().IsKeyDown(Keys.Escape) && escDown != true)
+            if (Keyboard.GetState().IsKeyDown(Keys.Escape) && escDown != true)
             {
                 MenuToggle();
                 escDown = true;
-            } else if (Keyboard.GetState().IsKeyUp(Keys.Escape) && escDown == true)
+            }
+            else if (Keyboard.GetState().IsKeyUp(Keys.Escape) && escDown == true)
             {
                 escDown = false;
             }
 
-            foreach (GameObject myObject in myGameObjects)
+            foreach (GameObject myObject in myGameObjects) //Update all GameObjects (Not Player or UI)
             {
                 myObject.Update(gameTime);
             }
-            player.Update(gameTime);
-            foreach (Component component in gameComponents)
+            player.Update(gameTime); //Update Player
+            foreach (Component component in gameComponents) //Update all UI Elements(Not Menu Overlay)
             {
                 component.Update(gameTime);
             }
             if (menuActive == true)
             {
-                foreach (Component menuComponent in menuComponents)
+                foreach (Component menuComponent in menuComponents) //Update Menu Overlay elements
                 {
                     menuComponent.Update(gameTime);
                 }
             }
-            myUI.Update(gameTime);
-            myInput.Update(gameTime);
-
-            if (Keyboard.GetState().IsKeyDown(Keys.C) && textBox.Active != true)
-            {
-                textBox.Active = true;
-            }
-
-            textBox.Update(gameTime);
+            myUI.Update(gameTime); //Update UI class
+            myInput.Update(gameTime); //Update Input class
 
             // TODO: Add your update logic here
 
@@ -133,28 +123,26 @@ namespace Auroria
 
             _spriteBatch.Begin();// SpriteSortMode.Immediate, null, null, null, null, null, cameraScale);
 
-            foreach(GameObject myObject in myGameObjects)
+
+            foreach (GameObject myObject in myGameObjects) //Draw all GameObjects (Not Player or UI)
             {
                 myObject.Draw(_spriteBatch, worldOffset);
             }
-            player.Draw(_spriteBatch, worldOffset);
-            myUI.Draw(_spriteBatch);
+            player.Draw(_spriteBatch, worldOffset); //Draw Player
+            myUI.Draw(_spriteBatch); //Draw UI
 
-            foreach (Component component in gameComponents)
+            foreach (Component component in gameComponents) //Draw all UI Elements(Not Menu Overlay)
             {
                 component.Draw(gameTime, _spriteBatch);
             }
             if (menuActive == true)
             {
-                foreach (Component menuComponent in menuComponents)
+                foreach (Component menuComponent in menuComponents)//Draw Menu Overlay
                 {
                     menuComponent.Draw(gameTime, _spriteBatch);
                 }
             }
-            if (textBox.Active == true)
-            {
-                textBox.Draw(gameTime, _spriteBatch);
-            }
+
 
             _spriteBatch.End();
 
@@ -163,24 +151,39 @@ namespace Auroria
             base.Draw(gameTime);
         }
 
+        /// <summary>
+        ///     Add a new GameObject to the list of GameObjects
+        /// </summary>
+        /// <param name="newObject">The GameObject being created</param>
         public void AddObject(GameObject newObject)
         {
             myGameObjects.Add(newObject);
         }
 
+        /// <summary>
+        ///     Add a new UI Component to the list of UI Components
+        /// </summary>
+        /// <param name="newComponent">UI Component</param>
         public void AddComponent(Component newComponent)
         {
             gameComponents.Add(newComponent);
         }
 
+        /// <summary>
+        ///     Toggle the game window between being fullscreen and windowed
+        /// </summary>
         public void ToggleFullscreen()
         {
-            isFullscreen = !isFullscreen;
-            _graphics.IsFullScreen = isFullscreen; //set the window to fullscreen
-            _graphics.ApplyChanges(); //applies the changes
+            isFullscreen = !isFullscreen; //Toggle
+            _graphics.IsFullScreen = isFullscreen; //set the window
+            _graphics.ApplyChanges(); //apply the change
         }
+
+        /// <summary>
+        ///     Toggle the Menu Overlay
+        /// </summary>
         public void MenuToggle()
-        {   
+        {
             menuActive = !menuActive;
         }
     }
