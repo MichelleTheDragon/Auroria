@@ -120,6 +120,8 @@ namespace Auroria
             Img toolbarImg4 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 5 }, toolbar4.Position);
             Img toolbarImg5 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 7 }, toolbar5.Position);
             Img toolbarImg6 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 9 }, toolbar6.Position);
+            Img toolbarImg7 = new Img(content.Load<Texture2D>("GameObjects/Tools"), new int[] { 0, 0 }, toolbar7.Position);
+            Img toolbarImg8 = new Img(content.Load<Texture2D>("GameObjects/Tools"), new int[] { 3, 0 }, toolbar8.Position);
 
             FullScreenButton.Click += ToggleFullscreen;
             exitButton.Click += ExitButton_Click;
@@ -141,6 +143,8 @@ namespace Auroria
             toolbar.Add(toolbarImg4);
             toolbar.Add(toolbarImg5);
             toolbar.Add(toolbarImg6);
+            toolbar.Add(toolbarImg7);
+            toolbar.Add(toolbarImg8);
             toolbar.Add(toolbarBorder);
             toolbarButtons[0] = toolbar1;
             toolbarButtons[1] = toolbar2;
