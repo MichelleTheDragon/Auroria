@@ -13,17 +13,14 @@ namespace Auroria
     {
         #region Fields
 
+        private MouseState previousMouseState;
         private MouseState currentMouseState;
-
+        
         private SpriteFont font;
+        private Texture2D texture;
 
         private bool isMouseHovering;
-
         private bool isMenuButton;
-
-        private MouseState previousMouseState;
-
-        private Texture2D texture;
 
         private GameWorld myWorld;
 

@@ -113,6 +113,14 @@ namespace Auroria
             };
 
             #endregion
+
+            Img toolbarImg1 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 0 }, toolbar1.Position);
+            Img toolbarImg2 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 1 }, toolbar2.Position);
+            Img toolbarImg3 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 3 }, toolbar3.Position);
+            Img toolbarImg4 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 5 }, toolbar4.Position);
+            Img toolbarImg5 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 7 }, toolbar5.Position);
+            Img toolbarImg6 = new Img(content.Load<Texture2D>("GameObjects/tilesetCrops1"), new int[] { 5, 9 }, toolbar6.Position);
+
             FullScreenButton.Click += ToggleFullscreen;
             exitButton.Click += ExitButton_Click;
 
@@ -127,6 +135,12 @@ namespace Auroria
             toolbar.Add(toolbar6);
             toolbar.Add(toolbar7);
             toolbar.Add(toolbar8);
+            toolbar.Add(toolbarImg1);
+            toolbar.Add(toolbarImg2);
+            toolbar.Add(toolbarImg3);
+            toolbar.Add(toolbarImg4);
+            toolbar.Add(toolbarImg5);
+            toolbar.Add(toolbarImg6);
             toolbar.Add(toolbarBorder);
             toolbarButtons[0] = toolbar1;
             toolbarButtons[1] = toolbar2;
