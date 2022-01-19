@@ -14,6 +14,8 @@ namespace Auroria
 
         protected Texture2D sprite;
         protected bool isPlayer;
+        protected bool isActive = true;
+        public bool IsActive { set { isActive = value; } }
         protected int tileHeight = 1;
         protected float animationTimer;
 
@@ -158,12 +160,9 @@ namespace Auroria
         /// <param name="worldOffset"></param>
         public void Draw(SpriteBatch spriteBatch, Vector2 worldOffset)
         {
-            //if (isPlayer != true) {
+            if (isActive == true) {
                 spriteBatch.Draw(sprite, worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
-            //} else
-            //{
-                //spriteBatch.Draw(sprites[currentSprite], worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
-            //}
+            } 
         }
 
         #endregion

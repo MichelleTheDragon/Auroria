@@ -144,34 +144,23 @@ namespace Auroria
                 int newY = (int)(myWorld.Player.WorldPos.Y + 50) / 64;
                 if (newX >= 0 && newX < myWorld.OccupiedTiles.GetLength(0) && newY >= 0 && newY < myWorld.OccupiedTiles.GetLength(1))
                 {
-                    if (myWorld.OccupiedTiles[newX, newY] != true)
+                    if (myWorld.OccupiedTiles[newX, newY] == null)
                     {
-                        switch (myUI.CurrentToolbarPicked)
-                        {
-                            case 1:
-                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 0 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                                break;
-                            case 2:
-                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 1 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                                break;
-                            case 3:
-                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 2 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                                break;
-                            case 4:
-                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 3 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                                break;
-                            case 5:
-                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 4 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                                break;
-                            case 6:
-                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 5 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                                break;
-                        }
                         if (myUI.CurrentToolbarPicked <= 6)
                         {
-                            myWorld.OccupiedTiles[newX, newY] = true;
+                            Plant myPlant = new Plant(newPlant, new int[] { 0, myUI.CurrentToolbarPicked - 1 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot);
+                            myWorld.AddObject(myPlant); //spawn under player position
+                            myWorld.OccupiedTiles[newX, newY] = myPlant;
                         }
                         //player.PlantSeed(myUI.currentType[1]);
+                    } else if (myUI.CurrentToolbarPicked == 7)
+                    {
+                        myWorld.OccupiedTiles[newX, newY].IsActive = false;
+                        if(myWorld.OccupiedTiles[newX, newY].GetType().Equals(typeof(Plant)))
+                        {
+                            ((Plant)myWorld.OccupiedTiles[newX, newY]).MyPlot.IsActive = false;
+                        }
+                        myWorld.OccupiedTiles[newX, newY] = null;
                     }
                 }
                 spaceDown = true;

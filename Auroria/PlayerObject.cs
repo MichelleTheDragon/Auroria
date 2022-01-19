@@ -42,16 +42,19 @@ namespace Auroria
 
         public override void Update(GameTime gameTime)
         {
-            animationTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            if (animationTimer >= 2.0f)
+            if (isActive == true)
             {
-                animationTimer = 0.0f;
-                tilePos[0]++;
-                if (tilePos[0] > 3)
+                animationTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (animationTimer >= 2.0f)
                 {
-                    tilePos[0] = 0;
+                    animationTimer = 0.0f;
+                    tilePos[0]++;
+                    if (tilePos[0] > 3)
+                    {
+                        tilePos[0] = 0;
+                    }
+                    ChangeSpriteTile();
                 }
-                ChangeSpriteTile();
             }
         }
 

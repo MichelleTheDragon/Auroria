@@ -19,8 +19,8 @@ namespace Auroria
 
         private List<GameObject> myGameObjects = new List<GameObject>();
         public List<GameObject> MyGameObjects { get { return myGameObjects; } }
-        private bool[,] occupiedTiles;
-        public bool[,] OccupiedTiles { get { return occupiedTiles; } set { occupiedTiles = value; } }
+        private GameObject[,] occupiedTiles;
+        public GameObject[,] OccupiedTiles { get { return occupiedTiles; } set { occupiedTiles = value; } }
 
 
         private PlayerObject player;
