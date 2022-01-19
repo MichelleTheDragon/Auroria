@@ -142,34 +142,37 @@ namespace Auroria
             {
                 int newX = (int)(myWorld.Player.WorldPos.X + 32) / 64;
                 int newY = (int)(myWorld.Player.WorldPos.Y + 50) / 64;
-                if (myWorld.OccupiedTiles[newX, newY] != true)
+                if (newX >= 0 && newX < myWorld.OccupiedTiles.GetLength(0) && newY >= 0 && newY < myWorld.OccupiedTiles.GetLength(1))
                 {
-                    switch (myUI.CurrentToolbarPicked)
+                    if (myWorld.OccupiedTiles[newX, newY] != true)
                     {
-                        case 1:
-                            myWorld.AddObject(new Plant(newPlant, new int[] { 0, 0 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                            break;
-                        case 2:
-                            myWorld.AddObject(new Plant(newPlant, new int[] { 0, 1 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                            break;
-                        case 3:
-                            myWorld.AddObject(new Plant(newPlant, new int[] { 0, 2 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                            break;
-                        case 4:
-                            myWorld.AddObject(new Plant(newPlant, new int[] { 0, 3 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                            break;
-                        case 5:
-                            myWorld.AddObject(new Plant(newPlant, new int[] { 0, 4 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                            break;
-                        case 6:
-                            myWorld.AddObject(new Plant(newPlant, new int[] { 0, 5 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
-                            break;
+                        switch (myUI.CurrentToolbarPicked)
+                        {
+                            case 1:
+                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 0 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
+                                break;
+                            case 2:
+                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 1 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
+                                break;
+                            case 3:
+                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 2 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
+                                break;
+                            case 4:
+                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 3 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
+                                break;
+                            case 5:
+                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 4 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
+                                break;
+                            case 6:
+                                myWorld.AddObject(new Plant(newPlant, new int[] { 0, 5 }, new Vector2(newX * 64, newY * 64), myWorld, newPlot)); //spawn under player position
+                                break;
+                        }
+                        if (myUI.CurrentToolbarPicked <= 6)
+                        {
+                            myWorld.OccupiedTiles[newX, newY] = true;
+                        }
+                        //player.PlantSeed(myUI.currentType[1]);
                     }
-                    if (myUI.CurrentToolbarPicked <= 6)
-                    {
-                        myWorld.OccupiedTiles[newX, newY] = true;
-                    }
-                    //player.PlantSeed(myUI.currentType[1]);
                 }
                 spaceDown = true;
             }

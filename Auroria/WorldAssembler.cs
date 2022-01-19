@@ -198,13 +198,15 @@ namespace Auroria
                     }
                 }
             }
-            Texture2D[] sprites = new Texture2D[4]; //player character sprite array
-            sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front_64"); 
-            sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back_64");
-            sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left_64");
-            sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right_64");
+            Texture2D sprites = content.Load<Texture2D>("GameObjects/GOLEM_spritesheet");
+            //Texture2D[] sprites = new Texture2D[4]; //player character sprite array
+            //sprites[0] = content.Load<Texture2D>("GameObjects/GOLEM_front_64"); 
+            //sprites[1] = content.Load<Texture2D>("GameObjects/GOLEM_back_64");
+            //sprites[2] = content.Load<Texture2D>("GameObjects/GOLEM_left_64");
+            //sprites[3] = content.Load<Texture2D>("GameObjects/GOLEM_right_64");
             //Create the player character
-            gameWorld.Player = new PlayerObject(sprites, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld); 
+            //gameWorld.Player = new PlayerObject(sprites, new int[] { 0, 0 }, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2, graphics.GraphicsDevice.Viewport.Height / 2), gameWorld);
+            gameWorld.Player = new PlayerObject(sprites, new int[] { 0, 0 }, new Vector2(21 * 64, 23 * 64), gameWorld, graphics);
 
             //gameWorld.AddObject(new Grass(tileSet, grass, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 + 64 * 2, graphics.GraphicsDevice.Viewport.Height / 2)));
             //gameWorld.AddObject(new Rock(tileSet, rock, new Vector2(graphics.GraphicsDevice.Viewport.Width / 2 - 64 * 2, graphics.GraphicsDevice.Viewport.Height / 2)));

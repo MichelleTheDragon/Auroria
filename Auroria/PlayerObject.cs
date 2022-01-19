@@ -28,10 +28,13 @@ namespace Auroria
         /// <param name="sprites"></param>
         /// <param name="worldPos"></param>
         /// <param name="myWorld"></param>
-        public PlayerObject(Texture2D[] sprites, Vector2 worldPos, GameWorld myWorld) : base(sprites[0], null, worldPos, false)
+        public PlayerObject(Texture2D sprites, int[] tilePos, Vector2 worldPos, GameWorld myWorld, GraphicsDeviceManager graphics) : base(sprites, tilePos, worldPos, false)
         {
             this.myWorld = myWorld;
-            this.sprites = sprites;
+            this.sprite = sprites;
+            this.isPlayer = true;
+            myWorld.WorldOffset = new Vector2(- worldPos.X + graphics.GraphicsDevice.Viewport.Width / 2, - worldPos.Y + graphics.GraphicsDevice.Viewport.Height / 2);
+            this.rectPlayer = new Rectangle(0, 0, 64, 64);
         }
 
         #endregion
@@ -39,6 +42,21 @@ namespace Auroria
 
         public override void Update(GameTime gameTime)
         {
+
+            if (isPlayer == true)
+            {
+                animationTimer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+                if (animationTimer >= 2.0f)
+                {
+                    animationTimer = 0.0f;
+                    tilePos[0]++;
+                    if (tilePos[0] > 3)
+                    {
+                        tilePos[0] = 0;
+                    }
+                    ChangeSpriteTile();
+                }
+            }
         }
 
 
@@ -53,30 +71,34 @@ namespace Auroria
             {
                 case 1: 
                     this.velocity.Y = -(float)gameTime.ElapsedGameTime.TotalSeconds * speed;
-                    if (currentSprite != 1)
+                    if (tilePos[1] != 3)
                     {
-                        currentSprite = 1;
+                        tilePos[1] = 3;
+                        ChangeSpriteTile();
                     }
                     break;
                 case 2:
                     this.velocity.Y = (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
-                    if (currentSprite != 0)
+                    if (tilePos[1] != 0)
                     {
-                        currentSprite = 0;
+                        tilePos[1] = 0;
+                        ChangeSpriteTile();
                     }
                     break;
                 case 3:
                     this.velocity.X = -(float)gameTime.ElapsedGameTime.TotalSeconds * speed;
-                    if (currentSprite != 2)
+                    if (tilePos[1] != 2)
                     {
-                        currentSprite = 2;
+                        tilePos[1] = 2;
+                        ChangeSpriteTile();
                     }
                     break;
                 case 4:
                     this.velocity.X = (float)gameTime.ElapsedGameTime.TotalSeconds * speed;
-                    if (currentSprite != 3)
+                    if (tilePos[1] != 1)
                     {
-                        currentSprite = 3;
+                        tilePos[1] = 1;
+                        ChangeSpriteTile();
                     }
                     break;
             }

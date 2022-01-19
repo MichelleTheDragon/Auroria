@@ -200,6 +200,18 @@
 /processorParam:TextureFormat=Color
 /build:GameObjects/GOLEM_right_64.png
 
+#begin GameObjects/GOLEM_spritesheet.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=255,0,255,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:GameObjects/GOLEM_spritesheet.png
+
 #begin GameObjects/tilesetCrops1.png
 /importer:TextureImporter
 /processor:TextureProcessor

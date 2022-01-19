@@ -13,15 +13,16 @@ namespace Auroria
         #region Fields
 
         protected Texture2D sprite;
-        protected Texture2D[] sprites;
-        protected int currentSprite = 0;
+        protected bool isPlayer;
         protected int tileHeight = 1;
+        protected float animationTimer;
 
         protected float scale = 1.0f;
         protected float layer = 1.0f;
         protected Vector2 worldPos;
         public Vector2 WorldPos { get { return worldPos; } set { worldPos = value; } }
         public Rectangle rect;
+        public Rectangle rectPlayer;
         protected Vector2 origin;
         public Vector2 velocity;
         protected SpriteEffects effects;
@@ -74,10 +75,10 @@ namespace Auroria
         /// <returns></returns>
         protected bool IsTouchingLeft(GameObject myGameObject)
         {
-            return  this.worldPos.X + this.rect.Right - 10 + this.velocity.X > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
-                    this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
-                    this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
-                    this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
+            return  this.worldPos.X + this.rectPlayer.Right - 10 + this.velocity.X > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
+                    this.worldPos.X + this.rectPlayer.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
+                    this.worldPos.Y + this.rectPlayer.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
+                    this.worldPos.Y + this.rectPlayer.Top + 10 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
         }
         /// <summary>
         ///     Returns true if GameObject is blocking on the left
@@ -86,10 +87,10 @@ namespace Auroria
         /// <returns></returns>
         protected bool IsTouchingRight(GameObject myGameObject)
         {
-            return this.worldPos.X + this.rect.Left + 10 + this.velocity.X < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
-                   this.worldPos.X + this.rect.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
-                   this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
+            return this.worldPos.X + this.rectPlayer.Left + 10 + this.velocity.X < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
+                   this.worldPos.X + this.rectPlayer.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64 &&
+                   this.worldPos.Y + this.rectPlayer.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
+                   this.worldPos.Y + this.rectPlayer.Top + 10 < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64;
         }
         /// <summary>
         ///     Returns true if GameObject is blocking bellow
@@ -98,10 +99,10 @@ namespace Auroria
         /// <returns></returns>
         protected bool IsTouchingTop(GameObject myGameObject)
         {
-            return this.worldPos.Y + this.rect.Bottom - 10 + this.velocity.Y > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.Y + this.rect.Top + 30 < myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.X + this.rect.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
-                   this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;
+            return this.worldPos.Y + this.rectPlayer.Bottom - 10 + this.velocity.Y > myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
+                   this.worldPos.Y + this.rectPlayer.Top + 10 < myGameObject.worldPos.Y + myGameObject.rect.Top - myGameObject.tilePos[1] * 64 &&
+                   this.worldPos.X + this.rectPlayer.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
+                   this.worldPos.X + this.rectPlayer.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;
         }
         /// <summary>
         ///     Returns true if GameObject is blocking above
@@ -110,10 +111,10 @@ namespace Auroria
         /// <returns></returns>
         protected bool IsTouchingBottom(GameObject myGameObject)
         {
-            return this.worldPos.Y + this.rect.Top + 30 + this.velocity.Y < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.Y + this.rect.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
-                   this.worldPos.X + this.rect.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
-                   this.worldPos.X + this.rect.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;
+            return this.worldPos.Y + this.rectPlayer.Top + 10 + this.velocity.Y < myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
+                   this.worldPos.Y + this.rectPlayer.Bottom - 10 > myGameObject.worldPos.Y + myGameObject.rect.Bottom - myGameObject.tilePos[1] * 64 &&
+                   this.worldPos.X + this.rectPlayer.Right - 10 > myGameObject.worldPos.X + myGameObject.rect.Left - myGameObject.tilePos[0] * 64 &&
+                   this.worldPos.X + this.rectPlayer.Left + 10 < myGameObject.worldPos.X + myGameObject.rect.Right - myGameObject.tilePos[0] * 64;
         }
 
         #endregion
@@ -125,7 +126,6 @@ namespace Auroria
 
         public virtual void Update(GameTime gameTime)
         {
-
         }
 
         /// <summary>
@@ -134,10 +134,20 @@ namespace Auroria
         /// <param name="height"></param>
         protected void ChangeSpriteTile()
         {
-            rect = new Rectangle(tilePos[0] * 64, (tilePos[1] - (tileHeight - 1)) * 64, 64, 64 * tileHeight);
-            if (tileHeight > 1)
+            if (isPlayer == true)
             {
-                origin = new Vector2(origin.X, (tileHeight - 1) * 64 + (tileHeight - 1) * 32);
+                rect.X = tilePos[0] * 64;
+                rect.Y = tilePos[1] * 64;
+                //= new Rectangle(tilePos[0] * 64, (tilePos[1] - (tileHeight - 1)) * 64, 64, 64);
+            }
+            else
+            {
+                rect = new Rectangle(tilePos[0] * 64, (tilePos[1] - (tileHeight - 1)) * 64, 64, 64 * tileHeight);
+
+                if (tileHeight > 1)
+                {
+                    origin = new Vector2(origin.X, (tileHeight - 1) * 64 + (tileHeight - 1) * 32);
+                }
             }
         }
 
@@ -148,12 +158,12 @@ namespace Auroria
         /// <param name="worldOffset"></param>
         public void Draw(SpriteBatch spriteBatch, Vector2 worldOffset)
         {
-            if (sprites == null) {
+            //if (isPlayer != true) {
                 spriteBatch.Draw(sprite, worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
-            } else
-            {
-                spriteBatch.Draw(sprites[currentSprite], worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
-            }
+            //} else
+            //{
+                //spriteBatch.Draw(sprites[currentSprite], worldPos + worldOffset, rect, Color.White, 0.0f, origin, scale, effects, layer);
+            //}
         }
 
         #endregion
